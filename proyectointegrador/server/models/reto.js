@@ -1,12 +1,31 @@
-const mongoose = require('mongoose');
+import { DataTypes } from "sequelize";
+import sequelize from "./database.js";
 
-let retoSchema = new mongoose.Schema({
-    nombre:{type: String, required: true},
-    descripcion:{type: String, required: true},
-    puntos: {type: Number, default: 0}
-})
-let Reto = mongoose.model('Reto', retoSchema);
-module.exports = Reto;
+
+const Reto = sequelize.define("Reto", {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    nombre: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    descripcion: {
+        type: DataTypes.TEXT
+    },
+    puntos: {
+        type: DataTypes.INTEGER,
+        defaultValue: DataTypes.NOW
+    }
+}, {
+    tableName: "reto",
+    timestamps: false
+});
+
+export default Reto;
+
 
 
 

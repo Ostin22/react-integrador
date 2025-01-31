@@ -1,5 +1,4 @@
-let Reto = require('../models/reto');
-
+const Reto = require("../models/reto.js");
 
 //Controlador para agregar un nuevo reto.
 exports.AgregarReto = async(req, res)=>{
