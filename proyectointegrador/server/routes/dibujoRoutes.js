@@ -4,10 +4,10 @@ const upload = require("../models/config/multerconfig"); /*Importar la configura
 const dibujoController = require("../controllers/dibujoController");
 
 // Ruta para subir un dibujo con imagen
-router.post("/agregar", upload.single("imagen"), dibujoController.agregarDibujo);
+router.post("/agregardibujo", upload.single("imagen"), dibujoController.agregarDibujo);
 
 // Ruta para obtener todos los dibujos
-router.get("/listar", dibujoController.obtenerTodosLosDibujos);
+router.get("/obtenerdibujos", dibujoController.obtenerTodosLosDibujos);
 
 module.exports = router;
 

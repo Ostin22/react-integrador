@@ -1,11 +1,12 @@
 const RetosRespuestas = require("../models/retosRespuestas");
 const Usuario = require("../models/usuario");
 const Reto = require("../models/reto");
+const sequelize = require("../models/config/database");
 
 /*Agregar una respuesta a un reto*/
 exports.agregarRespuesta = async (req, res) => {
     try {
-        const { usuario_id, reto_id, descripcion } = req.body;
+        let { reto_id, usuario_id, estado_id, descripcion } = req.body;
 
         /*Verifica si el usuario existe*/
         const usuario = await Usuario.findByPk(usuario_id);
@@ -15,18 +16,34 @@ exports.agregarRespuesta = async (req, res) => {
         const reto = await Reto.findByPk(reto_id);
         if (!reto) return res.status(404).json({ error: "Reto no encontrado" });
 
+        // Obtener el estado_id por defecto si no se proporciona
+        if (!estado_id) {
+            const [resultado] = await sequelize.query(
+                "SELECT id FROM catalogos WHERE valor = 'PENDIENTE'"
+            );
+            if (resultado.length === 0) {
+                return res.status(500).json({ error: "No se encontró el estado 'PENDIENTE' en la base de datos" });
+            }
+            estado_id = resultado[0].id;
+        }
+
         /*Verificar si se subió una imagen*/
         let imagen_usuario = null;
         if (req.file) {
-            imagen_usuario = `/imageuploadsrespuestas/${req.file.filename}`;
+            imagen_usuario = `/public/imageuploadsdibujos/${req.file.filename}`;
         }
+
+        /*detecta la fecha actual automaticamente*/
+        const fecha_subida = new Date();
 
         /*Crear la respuesta al reto*/
         const nuevaRespuesta = await RetosRespuestas.create({
             usuario_id,
             reto_id,
             imagen_usuario,
-            descripcion
+            descripcion,
+            fecha_subida,
+            estado_id
         });
 
         res.status(201).json({ message: "Respuesta guardada con éxito", respuesta: nuevaRespuesta });

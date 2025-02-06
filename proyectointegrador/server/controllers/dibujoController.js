@@ -1,7 +1,7 @@
 const Dibujo = require("../models/dibujo");
 const Usuario = require("../models/usuario"); 
 const path = require("path");
-
+const sequelize = require("../models/config/database")
 
 exports.agregarDibujo = async (req, res) => {
     try {
@@ -16,16 +16,30 @@ exports.agregarDibujo = async (req, res) => {
         if (!usuario) {
             return res.status(404).json({ error: "Usuario no encontrado" });
         }
+        /*coloca los puntos para cada dibujo*/
+        if (!puntos_dibujo) {
+            const [resultado] = await sequelize.query(
+                "SELECT valornumerico FROM catalogos WHERE tipo = 'PUNTOS'"
+            );
+            if (resultado.length === 0) {
+                return res.status(500).json({ error: "No se encontró el valor de los puntos para dibujos" });
+            }
+            puntos_dibujo = resultado[0].valor;
+        }
 
         /*Ruta donde la imagen se guardara*/
-        const imagen = `/imageuploadsdibujos/${req.file.filename}`;
+        const imagen = `/public/imageuploadsdibujos/${req.file.filename}`;
+
+        /*detecta la fecha actual automaticamente*/
+        const fecha_subida = new Date();
 
         /*Guardar en la base de datos*/
         const nuevoDibujo = await Dibujo.create({
             nombre_dibujo,
             imagen,
             puntos_dibujo: puntos_dibujo || 0,
-            usuario_id
+            usuario_id,
+            fecha_subida
         });
 
         res.status(201).json({ message: "Dibujo guardado con éxito", dibujo: nuevoDibujo });

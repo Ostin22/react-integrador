@@ -1,5 +1,6 @@
 const Poema = require("../models/poemas");
 const Usuario = require("../models/usuario");
+const sequelize = require("../models/config/database");
 
 /*Agregar un nuevo poema*/
 exports.agregarPoema = async (req, res) => {
@@ -9,12 +10,26 @@ exports.agregarPoema = async (req, res) => {
         /*Valida que el usuario exista*/
         const usuario = await Usuario.findByPk(usuario_id);
         if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
+        /*obtiene los puntos de los poemas*/
+        if (!puntos_poema) {
+            const [resultado] = await sequelize.query(
+                "SELECT valornumerico FROM catalogos WHERE tipo = 'PUNTOS'"
+            );
+            if (resultado.length === 0) {
+                return res.status(500).json({ error: "No se encontró el valor de los puntos para poemas" });
+            }
+            puntos_poema = resultado[0].valor;
+        }
+
+        /*detecta la fecha actual automaticamente*/
+        const fecha_subida = new Date(); 
 
         const nuevoPoema = await Poema.create({
             titulo_poema,
             rima,
             puntos_poema,
-            usuario_id
+            usuario_id,
+            fecha_subida
         });
 
         res.status(201).json({ message: "Poema guardado con éxito", poema: nuevoPoema });

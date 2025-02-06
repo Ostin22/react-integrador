@@ -41,6 +41,14 @@ const RetosRespuestas = sequelize.define("RetosRespuestas", {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW
+    },
+    estado_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: "catalogos", 
+            key: "id"
+        }
     }
 }, {
     tableName: "retosrespuestas",

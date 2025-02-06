@@ -31,6 +31,14 @@ const Usuario = sequelize.define("Usuario", {
     contraseña: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    permiso_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: "catalogos", 
+            key: "id"
+        }
     }
 }, {
     tableName: "usuarios",
