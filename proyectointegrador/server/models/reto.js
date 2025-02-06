@@ -1,6 +1,5 @@
-import { DataTypes } from "sequelize";
-import sequelize from "./database.js";
-
+const { DataTypes } = require("sequelize");
+const sequelize = require("./config/database"); 
 
 const Reto = sequelize.define("Reto", {
     id: {
@@ -15,16 +14,17 @@ const Reto = sequelize.define("Reto", {
     descripcion: {
         type: DataTypes.TEXT
     },
-    puntos: {
+    puntos_retos: {
         type: DataTypes.INTEGER,
         defaultValue: DataTypes.NOW
     }
 }, {
-    tableName: "reto",
+    tableName: "retos",
     timestamps: false
 });
 
-export default Reto;
+
+module.exports = Reto;
 
 
 
