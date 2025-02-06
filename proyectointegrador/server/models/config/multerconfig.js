@@ -1,5 +1,14 @@
 const multer = require("multer"); /* maneja la carga de archivos en aplicaciones web, normalmente en combinación con Express.*/
 const path = require("path");
+const fs = require("fs");
+
+const uploadPath = path.join(__dirname, "../../public/imageuploadsdibujos");
+
+// Verificar si la carpeta existe, si no, crearla
+if (!fs.existsSync(uploadPath)) {
+    fs.mkdirSync(uploadPath, { recursive: true });
+    console.log("Carpeta creada:", uploadPath);
+}
 
 /*Configuración del almacenamiento de las imagenes*/
 const storage = multer.diskStorage({
