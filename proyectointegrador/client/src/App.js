@@ -6,6 +6,7 @@ import RetosList from './components/RetosList';
 import AgregarReto from './components/AgregarReto';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import './App.css';
 
 function HomeRedirect() {
   const navigate = useNavigate();
