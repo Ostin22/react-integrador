@@ -9,7 +9,7 @@ const dibujoRoutes = require("./routes/dibujoRoutes");
 const poemaRoutes = require("./routes/poemaRoutes");
 const usuarioRoutes = require("./routes/usuarioRoutes");
 const retosRespuestasRoutes = require("./routes/retosrespuestasRoutes");
-
+const rankingRoutes = require("./routes/rankingRoutes")
 /*Configuración de variables de entorno*/
 dotenv.config();
 
@@ -28,7 +28,7 @@ app.use("/api/retos", retoRoutes);
 app.use("/api/dibujos", dibujoRoutes);
 app.use("/api/poemas", poemaRoutes);
 app.use("/api/respuestas", retosRespuestasRoutes);
-
+app.use("/api/ranking", rankingRoutes);
 /*Conectar a la base de datos y levantar servidor*/
 sequelize.sync({ alter: true })
     .then(() => {
