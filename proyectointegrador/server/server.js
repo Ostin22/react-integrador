@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const sequelize = require("./models/config/database");
+require('dotenv').config(); 
 
 /*Importar rutas*/
 const retoRoutes = require("./routes/retoRoutes");
@@ -24,11 +25,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/public", express.static("public")); 
 
 /*Rutas*/
-app.use("/api/usuarios", usuarioRoutes);
 app.use("/api/retos", retoRoutes);
 app.use("/api/dibujos", dibujoRoutes);
 app.use("/api/poemas", poemaRoutes);
 app.use("/api/respuestas", retosRespuestasRoutes);
+
+/*Ruta de autenticacion*/ 
+app.use('/auth', usuarioRoutes);
+
+app._router.stack.forEach((middleware) => {
+    if (middleware.route) {
+        console.log(`[${Object.keys(middleware.route.methods).join(",").toUpperCase()}] ${middleware.route.path}`);
+    }
+});
+
+/*Manejador de rutas no encontradas*/
+app.use((req, res) => {
+    res.status(404).json({ error: "Ruta no encontrada" });
+});
 
 
 /*Conectar a la base de datos y levantar servidor*/
@@ -41,4 +55,3 @@ sequelize.sync({ alter: true })
         });
     })
     .catch(error => console.error("Error al sincronizar la base de datos:", error));
-
