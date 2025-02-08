@@ -7,29 +7,23 @@ exports.agregarPoema = async (req, res) => {
     try {
         const { titulo_poema, rima, puntos_poema, usuario_id } = req.body;
 
-        /*Valida que el usuario exista*/
-        const usuario = await Usuario.findByPk(usuario_id);
-        if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
-        /*obtiene los puntos de los poemas*/
-        if (!puntos_poema) {
-            const [resultado] = await sequelize.query(
-                "SELECT valornumerico FROM catalogos WHERE tipo = 'PUNTOS'"
-            );
-            if (resultado.length === 0) {
-                return res.status(500).json({ error: "No se encontró el valor de los puntos para poemas" });
-            }
-            puntos_poema = resultado[0].valor;
+        if (!titulo_poema || !rima) {
+            return res.status(400).json({ error: "Título y rima son requeridos" });
         }
 
-        /*detecta la fecha actual automaticamente*/
-        const fecha_subida = new Date(); 
+        const usuario = await Usuario.findByPk(usuario_id);
+        if (!usuario) {
+            return res.status(404).json({ error: "Usuario no encontrado" });
+        }
+
+        const puntos = puntos_poema || await obtenerPuntosDefault('PUNTOS');
 
         const nuevoPoema = await Poema.create({
             titulo_poema,
             rima,
-            puntos_poema,
+            puntos_poema: puntos,
             usuario_id,
-            fecha_subida
+            fecha_subida: new Date()
         });
 
         res.status(201).json({ message: "Poema guardado con éxito", poema: nuevoPoema });
@@ -38,6 +32,14 @@ exports.agregarPoema = async (req, res) => {
         res.status(500).json({ error: "Error al guardar el poema" });
     }
 };
+
+async function obtenerPuntosDefault(tipo) {
+    const [resultado] = await sequelize.query(
+        "SELECT valornumerico FROM catalogos WHERE tipo = :tipo",
+        { replacements: { tipo: tipo } }
+    );
+    return resultado.length ? resultado[0].valornumerico : null;
+}
 
 /*Obtiene todos los poemas*/
 exports.obtenerTodosLosPoemas = async (req, res) => {

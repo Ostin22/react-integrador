@@ -62,3 +62,8 @@ sequelize.sync({ alter: true })
         });
     })
     .catch(error => console.error("Error al sincronizar la base de datos:", error));
+
+app.use((err, req, res, next) => {
+    res.status(500).json({ error: "Error interno del servidor" });
+});
+    

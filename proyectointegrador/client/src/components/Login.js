@@ -1,22 +1,37 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./AuthStyles.css"; 
+import "./AuthStyles.css";
 
 const Login = ({ setAuth }) => {
   const [nombre_usuario, setNombreUsuario] = useState("");
   const [contraseña, setContraseña] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const handleLogin = async (event) => {
+    event.preventDefault();  /*Previene la recarga de la página*/
+
     try {
-      const response = await axios.post("http://localhost:4000/auth/login", { nombre_usuario, contraseña });
-      localStorage.setItem("token", response.data.token);
-      setAuth(true);
-      navigate("/retos");
+      const response = await axios.post('http://localhost:4000/auth/login', {
+        nombre_usuario,
+        contraseña
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.status === 200) {
+        localStorage.setItem('token', response.data.token);
+        alert('Login exitoso!');
+        setAuth(true);  
+        navigate('/retos');  
+      } else {
+        alert('Error en el login: ' + response.data.message);
+      }
     } catch (error) {
-      alert("Error en el login");
+      console.error('Error de login:', error);
+      alert('Error al conectar al servidor');
     }
   };
 
