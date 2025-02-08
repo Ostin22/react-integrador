@@ -25,10 +25,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/public", express.static("public")); 
 
 /*Rutas*/
-app.use("/api/retos", retoRoutes);
-app.use("/api/dibujos", dibujoRoutes);
-app.use("/api/poemas", poemaRoutes);
-app.use("/api/respuestas", retosRespuestasRoutes);
+app.use("/retos", retoRoutes);
+app.use("/dibujos", dibujoRoutes);
+app.use("/poemas", poemaRoutes);
+app.use("/respuestas", retosRespuestasRoutes);
 
 /*Ruta de autenticacion*/ 
 app.use('/auth', usuarioRoutes);
