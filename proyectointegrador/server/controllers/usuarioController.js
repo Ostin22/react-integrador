@@ -13,10 +13,14 @@ exports.agregarUsuario = async (req, res) => {
         return res.status(400).json({ error: "Todos los campos son obligatorios" });
     }
     // Validar si el usuario ya existe
-    let usuario = await Usuario.findOne({ email });
+    console.log(req.body);
+    let usuario = await Usuario.findOne({ where: { email: req.body.email } });
+    console.log(usuario);
     if (usuario) {
-      return res.status(400).json({ message: "El usuario ya existe" });
+        return res.status(400).json({ message: "El usuario ya existe" });
     }
+
+
     /*Hace un select de la base de datos colocando la id del catalogo donde el valor sea igual a el permiso usuario*/
     if (!req.body.permiso_id) {
         const [resultado] = await sequelize.query(
@@ -46,11 +50,11 @@ exports.agregarUsuario = async (req, res) => {
 
 
     // Generar JWT
-    const token = jwt.sign({ id: usuario._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+    const token = jwt.sign({ id: nuevoUsuario.id }, process.env.JWT_SECRET, { expiresIn: "7d" });
     res.status(201).json({ message: "Usuario registrado con éxito", usuario: nuevoUsuario });
-    res.status(201).json({ token, usuario: { id: usuario._id, nombre_usuario, nombre, apellido, email, permiso_id} });
+    res.status(201).json({ token, usuario: { id: usuario.id, nombre_usuario, nombre, apellido, email, permiso_id} });
   } catch (error) {
-    res.status(500).json({ message: "Error en el servidor" });
+    res.status(500).json({ message: "Error al obtener el token" });
   }
 };
 
