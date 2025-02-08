@@ -4,6 +4,9 @@ const dotenv = require("dotenv");
 const sequelize = require("./models/config/database");
 require('dotenv').config(); 
 
+/*Inicializar Express*/
+const app = express();
+
 /*Importar rutas*/
 const retoRoutes = require("./routes/retoRoutes");
 const dibujoRoutes = require("./routes/dibujoRoutes");
@@ -11,15 +14,19 @@ const poemaRoutes = require("./routes/poemaRoutes");
 const usuarioRoutes = require("./routes/usuarioRoutes");
 const retosRespuestasRoutes = require("./routes/retosrespuestasRoutes");
 
+/*Conecta las peticiones del front con el back*/ 
+const corsOptions = {
+    origin: ["http://localhost:5173", "http://localhost:3000", "http://localhost:3001", ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+};
+app.use(cors(corsOptions));
 
 /*Configuración de variables de entorno*/
 dotenv.config();
 
-/*Inicializar Express*/
-const app = express();
-
 /*Middlewares*/
-app.use(cors()); 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 app.use("/public", express.static("public")); 

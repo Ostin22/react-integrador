@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./AuthStyles.css"; // Importa los estilos CSS
+import "./AuthStyles.css"; 
 
 const Login = ({ setAuth }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [nombre_usuario, setNombreUsuario] = useState("");
+  const [contraseña, setContraseña] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4000/auth/login", { email, password });
+      const response = await axios.post("http://localhost:4000/auth/login", { nombre_usuario, contraseña });
       localStorage.setItem("token", response.data.token);
       setAuth(true);
       navigate("/retos");
@@ -26,17 +26,17 @@ const Login = ({ setAuth }) => {
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
           <input
-            type="email"
-            placeholder="Correo"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Nombre de Usuario"
+            value={nombre_usuario}
+            onChange={(e) => setNombreUsuario(e.target.value)}
             required
           />
           <input
             type="password"
             placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={contraseña}
+            onChange={(e) => setContraseña(e.target.value)}
             required
           />
           <button type="submit">Iniciar Sesión</button>

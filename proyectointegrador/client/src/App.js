@@ -1,44 +1,60 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation, Link } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import RetosList from './components/RetosList';
 import AgregarReto from './components/AgregarReto';
-import RankingSemanal from './components/RankingSemanal'; 
-import { useEffect } from "react";
+import RankingSemanal from './components/RankingSemanal';
+import Login from './components/Login';
+import Registro from './components/Registro';
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SubirImagen from './components/SubirImagen';
 import SubirPoema from './components/SubirPoema';
 import './App.css';
 import ApartadoArtistico from './components/ApartadoArtistico';
-
-function HomeRedirect() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate("/retos");
-  }, [navigate]);
-  return null;
-}
-
-
+import Perfil from "./components/Perfil";
 
 function App() {
+  const [auth, setAuth] = useState(!!localStorage.getItem("token"));
+  const location = useLocation();
+
+  // Rutas en las que NO queremos mostrar Header y Footer
+  const hideNavAndFooter = location.pathname === "/login" || location.pathname === "/registro";
+
   return (
-    <div>
-      <Header />
+    <>
+      {!hideNavAndFooter && <Header auth={auth} setAuth={setAuth} />}
       <main>
         <Routes>
-          {/* Ruta principal para la lista de retos */}
-          <Route path="/retos" element={<RetosList />} />
+          {/* Rutas Públicas */}
+          <Route 
+            path="/login" 
+            element={
+              auth ? <Navigate to="/retos" replace /> : <Login setAuth={setAuth} />
+            } 
+          />
+          <Route path="/registro" element={<Registro />} />
 
-          {/* Ruta para agregar un nuevo reto */}
-          <Route path="/agregar-reto" element={<AgregarReto />} />
+          {/* Rutas Protegidas */}
 
-          {/* Redirección a /retos si se accede a la raíz */}
-          <Route path="/" element={<HomeRedirect />} />
 
-          {/* Ruta para futuros componentes (ejemplo: apartado artístico) */}
+
           <Route
+            path="/perfil"
+            element={auth ? <Perfil /> : <Navigate to="/login" replace />}
+          />
+
+          <Route
+            path="/retos"
+            element={auth ? <RetosList /> : <Navigate to="/login" replace />}
+          />
+          <Route
+            path="/agregar-reto"
+            element={auth ? <AgregarReto /> : <Navigate to="/login" replace />}
+          />
+           {/* Ruta para futuros componentes (ejemplo: apartado artístico) */}
+           <Route
             path="/apartado-artistico" element={<ApartadoArtistico  />}
             
           />
@@ -51,15 +67,13 @@ function App() {
           {/* Ruta para futuros componentes (ejemplo: ranking semanal) */}
           <Route path="/ranking-semanal" element={<RankingSemanal />} />
 
-          {/* Ruta para manejar páginas no encontradas */}
-          <Route
-            path="*"
-            element={<h2 style={{ textAlign: 'center' }}>404 - Página no encontrada</h2>}
-          />
+
+          <Route path="/" element={<Navigate to="/retos" replace />} />
+          <Route path="*" element={<h2 style={{ textAlign: 'center' }}>404 - Página no encontrada</h2>} />
         </Routes>
       </main>
-      <Footer />
-    </div>
+      {!hideNavAndFooter && <Footer />}
+    </>
   );
 }
 

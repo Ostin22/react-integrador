@@ -60,53 +60,53 @@ exports.agregarUsuario = async (req, res) => {
 
 // Login de usuario
 exports.loginUsuario = async (req, res) => {
+    console.log("Se ha llamado a loginUsuario con:", req.body);
   
-  console.log("Se ha llamado a loginUsuario con:", req.body);
-
-  const { email, contraseña } = req.body;
-
-  try {
-    console.log("Buscando usuario en la base de datos...");
-
-    // Verificar si el usuario existe
-    let usuario = await Usuario.findOne({ where: { email: email } });
-    if (!usuario) {
-      console.log("Usuario no encontrado:", email);
-
-      return res.status(400).json({ message: "Credenciales inválidas" });
+    const { nombre_usuario, contraseña } = req.body;
+  
+    // Validar que se proporcionen nombre_usuario y contraseña
+    if (!nombre_usuario || !contraseña) {
+      return res.status(400).json({ message: "Nombre de usuario y contraseña son obligatorios" });
     }
-    console.log("Usuario encontrado:", usuario);
-
-    // Verificar la contraseña
-    console.log("Comparando contraseñas...");
-
-    const esCorrecta = await bcrypt.compare(contraseña, usuario.contraseña);
-    if (!esCorrecta) {
-      console.log("Contraseña incorrecta para:", email);
-
-      return res.status(400).json({ message: "Credenciales inválidas" });
+  
+    try {
+      console.log("Buscando usuario en la base de datos...");
+  
+      // Verificar si el usuario existe
+      const usuario = await Usuario.findOne({ where: { nombre_usuario } });
+      if (!usuario) {
+        console.log("Usuario no encontrado:", nombre_usuario);
+        return res.status(400).json({ message: "Credenciales inválidas" });
+      }
+      console.log("Usuario encontrado:", usuario);
+  
+      // Verificar la contraseña
+      console.log("Comparando contraseñas...");
+      const esCorrecta = await bcrypt.compare(contraseña, usuario.contraseña);
+      if (!esCorrecta) {
+        console.log("Contraseña incorrecta para:", nombre_usuario);
+        return res.status(400).json({ message: "Credenciales inválidas" });
+      }
+  
+      // Generar JWT
+      console.log("Generando token JWT...");
+      const token = jwt.sign({ id: usuario.id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+      console.log("Usuario autenticado:", nombre_usuario);
+  
+      // Enviar respuesta con el token y la información del usuario
+      return res.status(200).json({
+        token,
+        usuario: {
+          id: usuario.id,
+          nombre_usuario: usuario.nombre_usuario,
+          nombre: usuario.nombre,
+          apellido: usuario.apellido,
+          email: usuario.email,
+        },
+      });
+  
+    } catch (error) {
+      console.error("Error en loginUsuario:", error);
+      return res.status(500).json({ message: "Error en el servidor", error: error.message });
     }
-
-    // Generar JWT
-    console.log("Generando token JWT...");
-
-    const token = jwt.sign({ id: usuario.id }, process.env.JWT_SECRET, { expiresIn: "7d" });
-    console.log("Usuario autenticado:", email);
-
-    res.status(200).json({ 
-      token, 
-      usuario: { 
-        id: usuario.id,
-        nombre_usuario: usuario.nombre_usuario, 
-        nombre: usuario.nombre, 
-        apellido: usuario.apellido,
-        email: usuario.email, 
-      } 
-    });
-    
-  } catch (error) {
-    console.error("Error en loginUsuario:", error);
-
-    res.status(500).json({ message: "Error en el servidor" });
-  }
-};
+  };

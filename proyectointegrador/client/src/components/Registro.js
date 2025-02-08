@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./AuthStyles.css"; // Importa los estilos CSS
+import "./AuthStyles.css"; 
 
 const Registro = () => {
+  const [nombre_usuario, setNombreUsuario] = useState("");
   const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [contraseña, setContraseña] = useState("");
   const navigate = useNavigate();
 
   const handleRegistro = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4000/auth/registro", {
+      const response = await axios.post("http://localhost:4000/auth/agregarusuario", {
+        nombre_usuario,
         nombre,
+        apellido,
         email,
-        password,
+        contraseña,
       });
       if (response.status === 201) {
         alert("Registro exitoso. Por favor, inicia sesión.");
@@ -32,11 +36,25 @@ const Registro = () => {
       <div className="register-form">
         <h2>Registro</h2>
         <form onSubmit={handleRegistro}>
+        <input
+            type="text"
+            placeholder="Nombre de Usuario"
+            value={nombre_usuario}
+            onChange={(e) => setNombreUsuario(e.target.value)}
+            required
+          />
           <input
             type="text"
             placeholder="Nombre"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Apellidos"
+            value={apellido}
+            onChange={(e) => setApellido(e.target.value)}
             required
           />
           <input
@@ -49,8 +67,8 @@ const Registro = () => {
           <input
             type="password"
             placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={contraseña}
+            onChange={(e) => setContraseña(e.target.value)}
             required
           />
           <button type="submit">Registrarse</button>

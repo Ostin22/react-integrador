@@ -12,7 +12,7 @@ function RetosList() {
   useEffect(() => {
     const fetchRetos = async () => {
       try {
-        const response = await fetch(`${API_URL}/retos/api/todos`);
+        const response = await fetch(`${API_URL}/retos/obtenerretos`);
         const data = await response.json();
         setRetos(data);
       } catch (error) {
