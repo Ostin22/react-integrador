@@ -1,31 +1,42 @@
-let cors = require('cors');
-const sequelize = require("./models/database.js");
 const express = require("express");
+const cors = require("cors");
 const dotenv = require("dotenv");
-const retoRoutes = require("./routes/retoRoutes.js");
+const sequelize = require("./models/config/database");
 
-
+/*Importar rutas*/
+const retoRoutes = require("./routes/retoRoutes");
+const dibujoRoutes = require("./routes/dibujoRoutes");
+const poemaRoutes = require("./routes/poemaRoutes");
+const usuarioRoutes = require("./routes/usuarioRoutes");
+const retosRespuestasRoutes = require("./routes/retosrespuestasRoutes");
+const rankingRoutes = require("./routes/rankingRoutes")
+/*Configuración de variables de entorno*/
 dotenv.config();
+
+/*Inicializar Express*/
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+/*Middlewares*/
+app.use(cors()); 
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
+app.use("/public", express.static("public")); 
 
-// Rutas
+/*Rutas*/
+app.use("/api/usuarios", usuarioRoutes);
 app.use("/api/retos", retoRoutes);
-
-// Conectar a la base de datos
-sequelize.sync()
-  .then(() => {
-    console.log('Base de datos sincronizada');
-  })
-  .catch((error) => {
-    console.error('Error al sincronizar la base de datos:', error);
-  });
-
-// Iniciar servidor
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
+app.use("/api/dibujos", dibujoRoutes);
+app.use("/api/poemas", poemaRoutes);
+app.use("/api/respuestas", retosRespuestasRoutes);
+app.use("/api/ranking", rankingRoutes);
+/*Conectar a la base de datos y levantar servidor*/
+sequelize.sync({ alter: true })
+    .then(() => {
+        console.log("Base de datos sincronizada correctamente");
+        const PORT = process.env.PORT;
+        app.listen(PORT, () => {
+            console.log(`Servidor corriendo en http://localhost:${PORT}`);
+        });
+    })
+    .catch(error => console.error("Error al sincronizar la base de datos:", error));
 
