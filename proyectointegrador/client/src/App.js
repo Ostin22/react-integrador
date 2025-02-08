@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import RetosList from './components/RetosList';
 import AgregarReto from './components/AgregarReto';
+import RankingSemanal from './components/RankingSemanal'; 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './App.css';
@@ -38,6 +39,9 @@ function App() {
             path="/apartado-artistico"
             element={<h2>Aquí irá el componente del apartado artístico</h2>}
           />
+
+          {/* Ruta para futuros componentes (ejemplo: ranking semanal) */}
+          <Route path="/ranking-semanal" element={<RankingSemanal />} />
 
           {/* Ruta para manejar páginas no encontradas */}
           <Route

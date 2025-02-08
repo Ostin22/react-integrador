@@ -1,113 +1,141 @@
-/* Global Styles */
+/* Variables de colores inspirados en la naturaleza */
+:root {
+  --color-leaf: #4CAF50;
+  --color-moss: #81C784;
+  --color-forest: #2E7D32;
+  --color-earth: #795548;
+  --color-sand: #F5E6CA;
+  --color-sky: #B3E5FC;
+  --color-water: #039BE5;
+  --color-stone: #607D8B;
+}
+
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+  background-color: var(--color-sand);
+  color: var(--color-forest);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+header {
+  background-color: var(--color-forest);
+  color: rgb(255, 255, 255);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+header a:hover {
+  background-color: var(--color-moss);
+}
+
+/* Main content */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  min-height: calc(100vh - 200px);
+}
+
+/* Cards y elementos de lista */
+.card {
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid var(--color-leaf);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* Botones */
+button {
+  background-color: var(--color-leaf);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-forest);
+}
+
+button.secondary {
+  background-color: var(--color-stone);
+}
+
+/* Formularios */
+input, textarea {
+  border: 2px solid var(--color-moss);
+  border-radius: 4px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--color-leaf);
+  outline: none;
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-forest);
+  color: rgb(255, 255, 255);
+  padding: 2rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header nav {
+    flex-direction: column;
+    gap: 1rem;
   }
   
-  /* Header Styles */
-  header {
-    background-color: #8acf8d; /* Deep green */
-    color: white;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .card {
+    padding: 1rem;
   }
-  
-  .header-left {
-    display: flex;
-    align-items: center;
+}
+
+/* Animaciones */
+@keyframes growIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
   }
-  
-  .header-right {
-    display: flex;
-    align-items: center;
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  /* Navigation Styles */
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin-right: 15px;
-    transition: color 0.3s ease;
-  }
-  
-  nav a:hover {
-    color: #81C784; /* Lighter green */
-  }
-  
-  /* Main Image */
-  .main-image {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-  }
-  
-  /* Content Section */
-  .content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-  }
-  
-  /* Section Title */
-  .section-title {
-    text-align: center;
-    color: #2E7D32;
-    margin-bottom: 20px;
-  }
-  
-  /* Footer Styles */
-  footer {
-    background-color: #2E7D32;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-  }
-  
-  /* Social Icons */
-  .social-icons {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-  }
-  
-  .social-icons a {
-    color: white;
-    margin: 0 10px;
-    font-size: 20px;
-    text-decoration: none;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    header {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .header-right {
-      margin-top: 10px;
-    }
-  }
-  
-  /* Authentication Links */
-  .auth-links a {
-    color: white;
-    text-decoration: none;
-    margin-left: 10px;
-  }
-  
-  /* Slogan */
-  .slogan {
-    text-align: center;
-    padding: 20px;
-    color: #2E7D32;
-    font-style: italic;
-  }
+}
+
+.fade-in {
+  animation: growIn 0.3s ease-out forwards;
+}

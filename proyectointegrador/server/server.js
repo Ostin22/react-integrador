@@ -10,6 +10,7 @@ const poemaRoutes = require("./routes/poemaRoutes");
 const usuarioRoutes = require("./routes/usuarioRoutes");
 const retosRespuestasRoutes = require("./routes/retosrespuestasRoutes");
 
+
 /*Configuración de variables de entorno*/
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use("/api/retos", retoRoutes);
 app.use("/api/dibujos", dibujoRoutes);
 app.use("/api/poemas", poemaRoutes);
 app.use("/api/respuestas", retosRespuestasRoutes);
+
 
 /*Conectar a la base de datos y levantar servidor*/
 sequelize.sync({ alter: true })

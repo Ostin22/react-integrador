@@ -1,0 +1,84 @@
+.ranking-container {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 2rem; 
+}
+
+.ranking-title {
+    font-size: 4rem; 
+    font-weight: bold;
+    color: #1b5e20;
+    margin-bottom: 1rem;
+}
+
+.ranking-subtitle {
+    font-size: 2rem; 
+    color: #2e7d32;
+    margin-bottom: 1.5rem; 
+}
+
+.ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; 
+}
+
+.ranking-card {
+    background-color: rgb(208, 255, 202);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out;
+    transition: transform 0.2s ease;
+}
+
+.ranking-card:hover {
+    transform: translateX(10px);
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
+    margin-bottom: 0.5rem; 
+}
+
+.position {
+    font-size: 2rem; 
+    color: #4b5563;
+}
+
+.username {
+    font-weight: 500;
+    color: #1f2937;
+    font-size: 1.5rem;
+}
+
+.user-details {
+    margin-left: 2.5rem; 
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.liga {
+    font-size: 1.125rem; 
+    background: linear-gradient(90deg, #4CAF50, #81C784);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.points {
+    font-size: 2rem; 
+    color: #4b5563;
+}
+
+.streak {
+    font-size: 1.5rem; 
+    color: #f97316;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
