@@ -1,3 +1,18 @@
+.ranking-semanal {
+    background-image: url('../assets/images/paisaje1.jpg');/* Usa url() con la ruta correcta */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh; /* Para que el fondo cubra toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+
 .ranking-container {
     max-width: 42rem;
     margin: 0 auto;

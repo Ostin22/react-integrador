@@ -7,7 +7,10 @@ import AgregarReto from './components/AgregarReto';
 import RankingSemanal from './components/RankingSemanal'; 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import SubirImagen from './components/SubirImagen';
+import SubirPoema from './components/SubirPoema';
 import './App.css';
+import ApartadoArtistico from './components/ApartadoArtistico';
 
 function HomeRedirect() {
   const navigate = useNavigate();
@@ -36,9 +39,14 @@ function App() {
 
           {/* Ruta para futuros componentes (ejemplo: apartado artístico) */}
           <Route
-            path="/apartado-artistico"
-            element={<h2>Aquí irá el componente del apartado artístico</h2>}
+            path="/apartado-artistico" element={<ApartadoArtistico  />}
+            
           />
+          {/* Ruta para subir dibujos */}
+        <Route path="/subir-dibujo" element={<SubirImagen />} />
+
+          {/* Ruta para subir poemas */}
+          <Route path="/subir-poema" element={<SubirPoema />} />
 
           {/* Ruta para futuros componentes (ejemplo: ranking semanal) */}
           <Route path="/ranking-semanal" element={<RankingSemanal />} />
