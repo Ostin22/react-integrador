@@ -10,7 +10,7 @@ const SubirPoema = () => {
     const poemaData = { titulo, contenido };
 
     try {
-      const response = await fetch("http://localhost:5000/agregarpoema", {
+      const response = await fetch("http://localhost:4000/api/poemas/agregarpoema", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

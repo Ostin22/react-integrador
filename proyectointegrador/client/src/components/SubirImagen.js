@@ -12,7 +12,8 @@ const SubirImagen = () => {
     formData.append("titulo", titulo);
 
     try {
-      const response = await fetch("http://localhost:5000/agregardibujo", {
+      const API_URL = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${API_URL}/api/dibujos/agregardibujo`, {
         method: "POST",
         body: formData,
       });

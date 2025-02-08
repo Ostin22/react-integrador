@@ -8,16 +8,6 @@ const Dibujo = sequelize.define("Dibujo", {
         autoIncrement: true,
         primaryKey: true
     },
-    usuario_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: Usuario,
-            key: "id"
-        },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE"
-    },
     nombre_dibujo: {
         type: DataTypes.STRING,
         allowNull: false
@@ -42,6 +32,16 @@ const Dibujo = sequelize.define("Dibujo", {
 });
 
 /*Establecemos la relación con Usuario*/
-Dibujo.belongsTo(Usuario, { foreignKey: "usuario_id" });
+/*Dibujo.belongsTo(Usuario, { foreignKey: "usuario_id" });
+    usuario_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+            model: Usuario,
+            key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE"
+    },*/
 
 module.exports = Dibujo;
