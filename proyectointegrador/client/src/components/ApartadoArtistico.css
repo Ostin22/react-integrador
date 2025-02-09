@@ -13,10 +13,11 @@
 }
 
 .apartado-artistico h2 {
-    color: #affccc;
+    color: #03242c;
     font-size: 2rem;
     margin-bottom: 1rem;
     font-size: 4rem;
+    text-align: center;
 }
 
 .apartado-artistico > p {
@@ -93,3 +94,4 @@
         width: 100%;
     }
 }
+
