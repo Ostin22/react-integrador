@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ApartadoArtistico.css';
+import { GiThreeLeaves } from "react-icons/gi";
 
-const API_URL = process.env.REACT_APP_API_URL;
 
 const ApartadoArtistico = () => {
   const navigate = useNavigate();
@@ -34,9 +33,9 @@ const ApartadoArtistico = () => {
           className="opcion-btn poema"
           onClick={() => navigate('/poemas-dibujos')}
         >
-          <span className="icono"></span>
-          <h3>Escribir Poema</h3>
-          <p>Puedes expresar tus sentimientos por medio de un poema</p>
+          <span className="icono"><GiThreeLeaves /></span>
+          <h3>Collage Ecologico</h3>
+          <p>Mira tu trabajo en un mural compartido</p>
         </button>
       </div>
     </div>

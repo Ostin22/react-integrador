@@ -1,3 +1,9 @@
+.subtituloPoemasDibujos {
+    text-align: center;
+    padding-top: 20px;
+    color: #0c6e3d;
+}
+
 .poemas-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -27,4 +33,56 @@
     background-color: #2e7d32;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contenedor-principal {
+    padding: 20px;
+}
+
+.dibujos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.dibujos-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.imagen-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.dibujo-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.dibujo-imagen:hover {
+    transform: scale(1.05);
+}
+
+.dibujo-info {
+    padding: 15px;
+}
+
+.dibujos-titulo {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.dibujos-autor, .dibujos-fecha {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.9em;
 }
