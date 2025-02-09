@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const SubirImagen = () => {
   const [imagen, setImagen] = useState(null);
   const [titulo, setTitulo] = useState("");
   const [usuarioId, setUsuarioId] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -52,6 +54,7 @@ const SubirImagen = () => {
 
       if (response.status >= 200 && response.status < 300) {
         alert("Imagen subida correctamente!");
+        navigate('/apartado-artistico');
       } else {
         alert(`Error al subir la imagen: ${response.data.message || "Error desconocido"}`);
       }
