@@ -16,6 +16,8 @@ import Perfil from "./components/Perfil";
 import ProtectedRetosRespuestas from './components/ProtectedRetosRespuestas';
 import AccesoDenegado from './components/ProtectedAdminRoute';
 import MostrarDibujosPoemas from './components/MostrarDibujosPoemas';
+import SubirRespuestaReto from './components/SubirRespuestaReto';
+import RetosRespuestas from './components/RetosRespuestas';
 
 function App() {
   const [auth, setAuth] = useState(!!localStorage.getItem("token"));
@@ -38,12 +40,16 @@ function App() {
           />
           <Route path="/registro" element={<Registro />} />
 
+
+          <Route path="/subir-respuesta/:retoId" element={<SubirRespuestaReto />} />
+
+
           {/* Rutas Protegidas */}
 
 
           {/* Ruta privada de administrador */}
 
-          <Route path="/retos-respuestas" element={<ProtectedRetosRespuestas />} />
+          <Route path="/retos-respuestas" element={<RetosRespuestas />} />
           <Route path="/acceso-denegado" element={<AccesoDenegado />} />
 
           <Route

@@ -4,8 +4,8 @@ const upload = require("../models/config/multerconfig");
 const retosRespuestasController = require("../controllers/retosRespuestasController");
 
 // Rutas
-router.post("/agregarrespuesta", upload.single("imagen_usuario"), retosRespuestasController.agregarRespuesta);
-router.get("/obtenerrespuesta", retosRespuestasController.obtenerTodasLasRespuestas);
-router.get("/reto/:reto_id", retosRespuestasController.obtenerRespuestasPorReto);
+router.post('/subir', retosRespuestasController.subirRespuestaReto);
+router.get('/pendientes',  retosRespuestasController.obtenerRespuestasPendientes);
+router.post('/procesar',retosRespuestasController.procesarRespuesta);
 
 module.exports = router;
