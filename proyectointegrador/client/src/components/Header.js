@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './Header.css';
 
 function Header({ auth, setAuth }) {
   const navigate = useNavigate();
@@ -41,15 +42,12 @@ function Header({ auth, setAuth }) {
     navigate("/login");
   };
 
-  const handleLogin = () => {
-    navigate("/login");
-  };
 
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <img height="100px" width="100px" src="/images/logo.jpg" alt="Logo" />
+          <img height="100px" width="120px"  src="/static/logoecochallenge1.png" alt="Logo" />
           <button
             className="navbar-toggler"
             type="button"
@@ -68,15 +66,7 @@ function Header({ auth, setAuth }) {
                   INICIO
                 </button>
               </li>
-              
-              {auth && (
-                <button 
-                  onClick={() => navigate("/perfil")} 
-                  style={{ background: "none", border: "none", color: "blue", cursor: "pointer" }}
-                >
-                  Perfil
-                </button>
-              )}
+            
               
               <li className="nav-item">
                 <button className="nav-link" onClick={() => navigate("/apartado-artistico")}>
@@ -109,21 +99,21 @@ function Header({ auth, setAuth }) {
             </ul>
           </div>
           
-          {!auth ? (
+          {auth && (
+                <button
+                  className='boton-perfil' 
+                  onClick={() => navigate("/perfil")} 
+                >
+                  Perfil
+                </button>
+              )} : (
             <button 
-              onClick={handleLogin} 
-              style={{ background: "none", border: "none", color: "blue", cursor: "pointer" }}
-            >
-              Iniciar Sesión
-            </button>
-          ) : (
-            <button 
+              className='boton-cerrarsesion'
               onClick={handleLogout} 
-              style={{ background: "none", border: "none", color: "blue", cursor: "pointer" }}
             >
               Cerrar Sesión
             </button>
-          )}
+          )
         </div>
       </nav>
     </header>
