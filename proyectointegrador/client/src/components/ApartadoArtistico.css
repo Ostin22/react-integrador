@@ -1,0 +1,95 @@
+.apartado-artistico {
+    background-image: url('../assets/images/paisaje1.jpg'); /* Ruta absoluta desde 'public' */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh; /* Para que el fondo cubra toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.apartado-artistico h2 {
+    color: #affccc;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-size: 4rem;
+}
+
+.apartado-artistico > p {
+    color: #affccc;
+    margin-bottom: 2rem;
+    font-size: 1.7rem;
+}
+
+.opciones-artisticas {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.opcion-btn {
+    flex: 1;
+    max-width: 300px;
+    padding: 2rem;
+    border: none;
+    border-radius: 12px;
+    background: rgb(166, 223, 129);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    text-align: center;
+}
+
+.opcion-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.opcion-btn:hover h3 {
+    color: white;
+}
+
+.opcion-btn:hover p {
+    color: white;
+}
+
+.opcion-btn.dibujo {
+    border-top: 4px solid #4CAF50;
+}
+
+.opcion-btn.poema {
+    border-top: 4px solid #81C784;
+}
+
+.opcion-btn .icono {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.opcion-btn h3 {
+    color: #2e7d32;
+    margin-bottom: 0.5rem;
+}
+
+.opcion-btn p {
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .opciones-artisticas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .opcion-btn {
+        width: 100%;
+    }
+}

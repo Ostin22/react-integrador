@@ -1,12 +1,17 @@
-const Ranking = require("../models/ranking");
-const sequelize = require("../models/config/database");
 
-exports.obtenerTodosLosResultadosRanking = async (req, res) => {
-    try {
-        const ranking = await Ranking.findAll();
-        res.status(200).json(ranking);
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ message: 'Error al obtener los resultados del ranking' });
-    }
-};
+const db = require('../models'); // Asegúrate de tener configurada tu base de datos
+
+exports.getRankingSemanal = async (req, res) => {
+  try {
+    // Aquí iría la lógica para obtener el ranking semanal de tu base de datos
+    const rankingSemanal = await db.Usuario.findAll({
+      attributes: ['id', 'username', 'points'],
+      order: [['points', 'DESC']],
+      limit: 10
+    });
+
+    res.json(rankingSemanal);
+  } catch (error) {
+    console.error('Error al obtener el ranking:', error);
+    res.status(500).json({ message: 'Error al obtener el ranking' });
+  }

@@ -1,7 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function Header() {
+function Header({ auth, setAuth }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Elimina el token
+    setAuth(false); // Actualiza el estado de autenticación
+    navigate("/login"); // Redirige al login
+  };
+
+  const handleLogin = () => {
+    navigate("/login"); // Redirige a login sin recargar la página
+  };
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,21 +33,38 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" to="/retos">INICIO</Link>
+                <button className="nav-link" onClick={() => navigate("/retos")}>INICIO</button>
+              </li>
+
+              {/* ver perfil */}
+              {auth && <button onClick={() => navigate("/perfil")} style={{ background: "none", border: "none", color: "blue", cursor: "pointer" }}>Perfil</button>}
+
+
+
+              <li className="nav-item">
+                <button className="nav-link" onClick={() => navigate("/apartado-artistico")}>APARTADO ARTÍSTICO</button>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/apartado-artistico">APARTADO ARTÍSTICO</Link>
+                <button className="nav-link" onClick={() => navigate("/ranking-semanal")}>RANKING SEMANAL</button>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/ranking-semanal">RANKING SEMANAL</Link>
+                <button className="nav-link" onClick={() => navigate("/agregar-reto")}>Agregar un nuevo reto</button>
               </li>
               <li className="nav-item">
-                <span className="navbar-text">Puntaje Obtenido:</span>
+                <span className="navbar-text"></span>
               </li>
             </ul>
           </div>
-          <Link to="/login">Iniciar Sesión</Link>
-          <Link to="/logout">Cerrar Sesión</Link>
+          {/* Muestra "Iniciar Sesión" si no está autenticado, y "Cerrar Sesión" si lo está */}
+          {!auth ? (
+            <button onClick={handleLogin} style={{ background: "none", border: "none", color: "blue", cursor: "pointer" }}>
+              Iniciar Sesión
+            </button>
+          ) : (
+            <button onClick={handleLogout} style={{ background: "none", border: "none", color: "blue", cursor: "pointer" }}>
+              Cerrar Sesión
+            </button>
+          )}
         </div>
       </nav>
     </header>

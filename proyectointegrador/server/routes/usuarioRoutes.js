@@ -1,14 +1,36 @@
 const express = require("express");
 const router = express.Router();
 const usuarioController = require("../controllers/usuarioController");
+const jwt = require("jsonwebtoken");
+const Usuario = require("../models/usuario");
 
-// Ruta para agregar un usuario
+/*Rutas para manejo de usuarios*/
+router.post("/login", usuarioController.loginUsuario);
 router.post("/agregarusuario", usuarioController.agregarUsuario);
 
-// Ruta para obtener todos los usuarios
-router.get("/obtenerusuario", usuarioController.obtenerUsuarios);
+/*Ruta para obtener el perfil del usuario*/
+router.get("/perfil", async (req, res) => {
+    try {
+        const token = req.headers.authorization?.split(" ")[1];
 
-// Ruta para obtener un usuario por ID
-router.get("/:id", usuarioController.obtenerUsuarioPorId);
+        if (!token) {
+            return res.status(401).json({ message: "No autorizado" });
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const usuario = await Usuario.findByPk(decoded.id, {
+            attributes: { exclude: ['contraseña'] }
+        });
+
+        if (!usuario) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        res.json(usuario);
+    } catch (error) {
+        console.error("Error en la ruta /perfil:", error);
+        res.status(500).json({ message: "Error en el servidor" });
+    }
+});
 
 module.exports = router;
