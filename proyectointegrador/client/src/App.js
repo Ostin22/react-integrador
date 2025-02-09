@@ -8,7 +8,6 @@ import RankingSemanal from './components/RankingSemanal';
 import Login from './components/Login';
 import Registro from './components/Registro';
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import SubirImagen from './components/SubirImagen';
 import SubirPoema from './components/SubirPoema';
 import './App.css';
@@ -16,7 +15,7 @@ import ApartadoArtistico from './components/ApartadoArtistico';
 import Perfil from "./components/Perfil";
 import ProtectedRetosRespuestas from './components/ProtectedRetosRespuestas';
 import AccesoDenegado from './components/ProtectedAdminRoute';
-
+import MostrarDibujosPoemas from './components/MostrarDibujosPoemas';
 
 function App() {
   const [auth, setAuth] = useState(!!localStorage.getItem("token"));
@@ -73,6 +72,9 @@ function App() {
 
           {/* Ruta para subir poemas */}
           <Route path="/subir-poema" element={<SubirPoema />} />
+
+          {/* Ruta para ver los dibujos y poemas */}
+          <Route path="/poemas-dibujos" element={<MostrarDibujosPoemas/>} />
 
           {/* Ruta para futuros componentes (ejemplo: ranking semanal) */}
           <Route path="/ranking-semanal" element={<RankingSemanal />} />

@@ -71,19 +71,25 @@ exports.agregarDibujo = async (req, res) => {
   
 
 exports.obtenerTodosLosDibujos = async (req, res) => {
-    try {
-        const dibujos = await Dibujo.findAll({
-            include: {
-                model: Usuario,
-                attributes: ["id", "nombre_usuario", "email"] // Muestra datos del usuario
-            }
-        });
-        
-        console.log("Dibujos obtenidos:", dibujos);
-        res.json(dibujos);
-    } catch (error) {
-        console.error("Error al obtener los dibujos:", error);
-        res.status(500).json({ error: "Error al obtener los dibujos" });
-    }
-};
+try {
+    const dibujos = await Dibujo.findAll({
+        include: {
+          model: Usuario,
+          attributes: ["id", "nombre_usuario", "email"]
+        }
+    });
+    const dibujosConRutas = dibujos.map(dibujo => {
+      const dibujoData = dibujo.get({ plain: true });
+      return {
+          ...dibujoData,
+          imagenUrl: dibujoData.imagen ? `${dibujoData.imagen}` : null
+      };
+  });
 
+    console.log("Dibujos obtenidos:", dibujosConRutas);
+    res.json(dibujosConRutas);
+}catch (error) {
+  console.error("Error al obtener los dibujos:", error);
+  res.status(500).json({ error: "Error al obtener los dibujos" });
+}
+};

@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const sequelize = require("./models/config/database");
 require('dotenv').config(); 
+const path = require('path');
 
 /*Inicializar Express*/
 const app = express();
@@ -30,7 +31,7 @@ dotenv.config();
 /*Middlewares*/
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
-app.use("/public", express.static("public")); 
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 /*Rutas*/
 
