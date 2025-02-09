@@ -44,11 +44,17 @@ async function obtenerPuntosDefault(tipo) {
 /*Obtiene todos los poemas*/
 exports.obtenerTodosLosPoemas = async (req, res) => {
     try {
-        const poemas = await Poema.findAll({ include: Usuario });
-        res.status(200).json(poemas);
+        const poemas = await Poema.findAll({
+            include: [{
+                model: Usuario,
+                attributes: ['nombre_usuario', 'nombre', 'apellido'] 
+            }],
+            order: [['fecha_subida', 'DESC']]
+        });
+        res.json(poemas);
     } catch (error) {
-        console.error("Error al obtener los poemas:", error);
-        res.status(500).json({ error: "Error al obtener los poemas" });
+        console.error('Error al obtener poemas:', error);
+        res.status(500).json({ message: "Error al obtener los poemas" });
     }
 };
 
