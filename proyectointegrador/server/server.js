@@ -23,6 +23,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+
 /*Configuración de variables de entorno*/
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/public", express.static("public")); 
 
 /*Rutas*/
+
 app.use("/retos", retoRoutes);
 app.use("/dibujos", dibujoRoutes);
 app.use("/poemas", poemaRoutes);
@@ -52,7 +54,6 @@ app.use((req, res) => {
 });
 
 
-/*Conectar a la base de datos y levantar servidor*/
 sequelize.sync({ alter: true })
     .then(() => {
         console.log("Base de datos sincronizada correctamente");
