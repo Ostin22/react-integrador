@@ -1,10 +1,14 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const poemaController = require("../controllers/poemaController");
+const jwt = require('jsonwebtoken');
+const poemaController = require('../controllers/poemaController'); // Asegúrate de que la ruta al controlador sea correcta
+const authMiddleware = require('../middleware/authMiddleware')
 
-// Definir rutas
-router.post("/agregarpoema", poemaController.agregarPoema);
+/*ruta para agregar poemas*/
+router.post('/agregarpoema', authMiddleware, poemaController.agregarPoema);
+
 router.get("/obtenerpoemas", poemaController.obtenerTodosLosPoemas);
 router.get("/:id", poemaController.obtenerPoemaPorId);
 
 module.exports = router;
+

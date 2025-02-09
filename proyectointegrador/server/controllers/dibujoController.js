@@ -14,17 +14,17 @@ exports.agregarDibujo = async (req, res) => {
         }
         
         console.log("Datos recibidos:", { nombre_dibujo, puntos_dibujo });
-        console.log(req.body);  // This will show the entire request body
-        console.log(req.file);  // This will show the file information
+        console.log(req.body);  
+        console.log(req.file);  
 
 
-        // Verificar si el usuario existe
-        /*const usuario = await Usuario.findByPk(usuario_id);
+        /*Verificar si el usuario existe*/
+        const usuario = await Usuario.findByPk(usuario_id);
         if (!usuario) {
             console.log(`Usuario con ID ${usuario_id} no encontrado.`);
             return res.status(404).json({ error: "Usuario no encontrado" });
         }
-        console.log("Usuario encontrado:", usuario);*/
+        console.log("Usuario encontrado:", usuario);
 
         // Asignar valor por defecto a puntos_dibujo si no se proporciona
         if (!puntos_dibujo) {

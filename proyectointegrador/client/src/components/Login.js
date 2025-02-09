@@ -9,7 +9,7 @@ const Login = ({ setAuth }) => {
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
-    event.preventDefault();  /*Previene la recarga de la página*/
+    event.preventDefault();  
 
     try {
       const response = await axios.post('http://localhost:4000/auth/login', {
