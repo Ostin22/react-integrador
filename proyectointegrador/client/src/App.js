@@ -13,6 +13,8 @@ import SubirPoema from './components/SubirPoema';
 import './App.css';
 import ApartadoArtistico from './components/ApartadoArtistico';
 import Perfil from "./components/Perfil";
+import ProtectedRetosRespuestas from './components/ProtectedRetosRespuestas';
+import AccesoDenegado from './components/ProtectedAdminRoute';
 import MostrarDibujosPoemas from './components/MostrarDibujosPoemas';
 
 function App() {
@@ -39,6 +41,10 @@ function App() {
           {/* Rutas Protegidas */}
 
 
+          {/* Ruta privada de administrador */}
+
+          <Route path="/retos-respuestas" element={<ProtectedRetosRespuestas />} />
+          <Route path="/acceso-denegado" element={<AccesoDenegado />} />
 
           <Route
             path="/perfil"
@@ -49,6 +55,9 @@ function App() {
             path="/retos"
             element={auth ? <RetosList /> : <Navigate to="/login" replace />}
           />
+
+
+          
           <Route
             path="/agregar-reto"
             element={auth ? <AgregarReto /> : <Navigate to="/login" replace />}
