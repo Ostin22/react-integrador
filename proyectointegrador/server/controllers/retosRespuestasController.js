@@ -46,6 +46,17 @@ const subirRespuestaReto = async (req, res) => {
 
     try {
       const { reto_id, descripcion, usuario_id } = req.body;
+      //Prueba para que el usuario solo suba 1 respuesta
+
+      const respuestaExistente = await RetosRespuestas.findOne({
+        where: { reto_id, usuario_id }
+      });
+
+      if (respuestaExistente) {
+        return res.status(400).json({ message: 'Ya has subido una respuesta para este reto.' });
+      }
+
+
 
       const nuevaRespuesta = await RetosRespuestas.create({
         usuario_id,

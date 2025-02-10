@@ -7,7 +7,7 @@ const SubirRespuestaReto = () => {
   const [descripcion, setDescripcion] = useState('');
   const [loading, setLoading] = useState(false);
   const [usuarioId, setUsuarioId] = useState(null); // Estado para almacenar el usuario_id
-  //Toma el id del reto desde la url de App.js
+  //Toma el id del reto desde la url de App.
   const { retoId } = useParams();
   const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
