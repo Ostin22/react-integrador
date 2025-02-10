@@ -35,7 +35,7 @@ const Perfil = () => {
         <h2 className="perfil-titulo">Perfil de {usuario.nombre}</h2>
         <div className="perfil-info">
           <p><strong>Email:</strong>{usuario.email}</p>
-          <p><strong>Puntos:</strong>0</p>
+          <p><strong>Puntos:</strong> {usuario.puntos}</p>
         </div>
         <button className="perfil-boton" onClick={() => navigate("/retos")}>Volver a Retos</button>
       </div>
