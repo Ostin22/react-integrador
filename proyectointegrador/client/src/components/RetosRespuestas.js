@@ -1,4 +1,3 @@
-// components/RetosRespuestas.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProtectedAdminRoute from './ProtectedAdminRoute';
@@ -36,7 +35,7 @@ const RetosRespuestas = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert(`Respuesta ${accion === 'aprobar' ? 'aprobada' : 'rechazada'} exitosamente`);
-      cargarRespuestas(); // Recargar la lista
+      cargarRespuestas();
     } catch (error) {
       console.error('Error:', error);
       alert('Error al procesar la respuesta');

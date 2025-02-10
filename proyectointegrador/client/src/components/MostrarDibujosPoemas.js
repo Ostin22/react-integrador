@@ -42,6 +42,16 @@ const MostrarDibujosPoemas = () => {
     return `${API_URL}${imagenUrl}`;
 };
 
+const handleMostrarPoema = (poemaId) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Debes iniciar sesión para subir una respuesta');
+      navigate('/login');
+      return;
+    }
+    navigate(`/ver-poema/${poemaId}`);
+  };
+
   return (
       <div className="contenedor-principal">
           <h2>Dibujos y Poemas Creados por los Usuarios</h2>
@@ -56,7 +66,7 @@ const MostrarDibujosPoemas = () => {
                       <p className="poema-fecha">
                           {new Date(poema.fecha_subida).toLocaleDateString()}
                       </p>
-                      <button className='boton-visualizacion' onClick={() => navigate('/')}>
+                      <button className='boton-visualizacion' onClick={() => handleMostrarPoema(poema.id)}>
                           <FaEye />
                       </button>
                   </div>
