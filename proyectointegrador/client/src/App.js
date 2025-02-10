@@ -18,6 +18,7 @@ import AccesoDenegado from './components/ProtectedAdminRoute';
 import MostrarDibujosPoemas from './components/MostrarDibujosPoemas';
 import SubirRespuestaReto from './components/SubirRespuestaReto';
 import RetosRespuestas from './components/RetosRespuestas';
+import VerPoema from './components/VerPoema';
 
 function App() {
   const [auth, setAuth] = useState(!!localStorage.getItem("token"));
@@ -82,7 +83,10 @@ function App() {
           {/* Ruta para ver los dibujos y poemas */}
           <Route path="/poemas-dibujos" element={<MostrarDibujosPoemas/>} />
 
-          {/* Ruta para futuros componentes (ejemplo: ranking semanal) */}
+          {/* Ruta para ver los dibujos y poemas */}
+          <Route path="/ver-poema/:poemaId" element={<VerPoema/>} />
+
+          {/* Ruta para ranking semanal */}
           <Route path="/ranking-semanal" element={<RankingSemanal />} />
 
 

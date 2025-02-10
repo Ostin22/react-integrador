@@ -129,3 +129,17 @@ exports.loginUsuario = async (req, res) => {
       });
   }
 };
+
+exports.mostrarUsuariosRanking = async (req, res) => {
+    try {
+        const usuarios = await Usuario.findAll({
+            order: [[ 'puntos', 'DESC' ]],
+            limit: 5,
+        });
+        console.log('Usuario mostrado correctamente en el ranking', usuarios);
+        res.status(200).json(usuarios);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener los usuarios para el ranking' });
+    }
+};

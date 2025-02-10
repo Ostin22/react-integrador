@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function AgregarReto() {
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [puntos_retos, setPuntos] = useState('');
+  const navigate = useNavigate();
 
   const guardarDatos = async () => {
     if (!nombre || !descripcion || !puntos_retos) {
@@ -23,6 +25,7 @@ function AgregarReto() {
 
       if (response.ok) {
         alert('Reto guardado exitosamente');
+        navigate('/retos');
         setNombre('');
         setDescripcion('');
         setPuntos('');
