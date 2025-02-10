@@ -1,22 +1,39 @@
+
+
+.navbar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 -1rem; /* Añade margen a ambos lados */
+    z-index: 1000; /* La coloca encima de todo */
+    background: rgba(255, 255, 255, 0.9); /* Agrega un fondo semi-transparente si es necesario */
+    padding: 10px 20px; /* Ajusta el espaciado */
+    border-radius: 20px;
+}
+
 .apartado-artistico {
-    background-image: url('../assets/images/paisaje1.jpg'); /* Ruta absoluta desde 'public' */
+    background-image: url('../assets/images/paisaje1.jpg'); /* Verifica que la ruta sea correcta */
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 100vh; /* Para que el fondo cubra toda la pantalla */
+    height: 100vh; /* Ocupará toda la pantalla */
+    width: 100vw; /* Ocupa todo el ancho del viewport */
+    min-height: 105vh; /* Ocupa al menos el alto del viewport */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-}
-
+    position: absolute;  /* Fija el fondo respecto a la ventana */
+    top: 0;
+    left: 0;
+    
+  }
 .apartado-artistico h2 {
     color: #03242c;
-    font-size: 2rem;
     margin-bottom: 1rem;
-    font-size: 4rem;
+    font-size: 3rem;
     text-align: center;
 }
 
