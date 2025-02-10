@@ -88,11 +88,15 @@ function Header({ auth, setAuth }) {
                   RANKING SEMANAL
                 </button>
               </li>
+
+              {/* Solo mostrar el botón de agregar nuevo reto si el usuario es admin */}
+
+              {isAdmin &&(          
               <li className="nav-item">
                 <button className="nav-link" onClick={() => navigate("/agregar-reto")}>
                   Agregar un nuevo reto
                 </button>
-              </li>
+              </li>)}
 
               {/* Solo mostrar el botón de retos-respuestas si el usuario es admin */}
               {isAdmin && (
