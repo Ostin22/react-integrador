@@ -84,7 +84,7 @@ function Header({ auth, setAuth }) {
               {isAdmin &&(          
               <li className="nav-item">
                 <button className="nav-link" onClick={() => navigate("/agregar-reto")}>
-                  Agregar un nuevo reto
+                  AGREGAR NUEVO RETO
                 </button>
               </li>)}
 
@@ -92,7 +92,7 @@ function Header({ auth, setAuth }) {
               {isAdmin && (
                 <li className="nav-item">
                   <button className="nav-link" onClick={() => navigate("/retos-respuestas")}>
-                    Vista protegida de admin
+                    MODERACIÓN DE RESPUESTAS
                   </button>
                 </li>
               )}
