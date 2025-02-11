@@ -68,20 +68,27 @@ const SubirImagen = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="imagen-form">
-      {mensaje.text && <div className={`mensaje ${mensaje.type}`}>{mensaje.text}</div>}
-      <input
-        type="text"
-        placeholder="Título"
-        value={titulo}
-        onChange={(e) => setTitulo(e.target.value)}
-        required
-        className="imagen-input"
-      />
-      <input type="file" onChange={(e) => setImagen(e.target.files[0])} required className="imagen-file" />
-      <button type="submit" className="imagen-button">Subir Imagen</button>
-    </form>
+    <div className="container-subir-imagen">
+      <form onSubmit={handleSubmit} className="imagen-form">
+        {mensaje.text && <div className={`mensaje ${mensaje.type}`}>{mensaje.text}</div>}
+        <input
+          type="text"
+          placeholder="Título"
+          value={titulo}
+          onChange={(e) => setTitulo(e.target.value)}
+          required
+          className="imagen-input"
+        />
+        <input 
+          type="file" 
+          onChange={(e) => setImagen(e.target.files[0])} 
+          required 
+          className="imagen-file" 
+        />
+        <button type="submit" className="imagen-button">Subir Imagen</button>
+      </form>
+    </div>
   );
-};
+}
 
 export default SubirImagen;

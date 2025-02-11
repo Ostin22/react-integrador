@@ -69,26 +69,28 @@ const SubirPoema = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="poema-form">
-      {mensaje.text && <div className={`mensaje ${mensaje.type}`}>{mensaje.text}</div>}
-      <input
-        type="text"
-        value={titulo_poema}
-        onChange={(e) => setTitulo(e.target.value)}
-        placeholder="Título"
-        required
-        className="poema-input"
-      />
-      <textarea
-        value={rima}
-        onChange={(e) => setContenido(e.target.value)}
-        placeholder="Escribe tu poema aquí..."
-        required
-        className="poema-textarea"
-      />
-      <button type="submit" className="poema-button">Subir Poema</button>
-    </form>
+    <div className="container-subir-poema">
+      <form onSubmit={handleSubmit} className="poema-form">
+        {mensaje.text && <div className={`mensaje ${mensaje.type}`}>{mensaje.text}</div>}
+        <input
+          type="text"
+          value={titulo_poema}
+          onChange={(e) => setTitulo(e.target.value)}
+          placeholder="Título"
+          required
+          className="poema-input"
+        />
+        <textarea
+          value={rima}
+          onChange={(e) => setContenido(e.target.value)}
+          placeholder="Escribe tu poema aquí..."
+          required
+          className="poema-textarea"
+        />
+        <button type="submit" className="poema-button">Subir Poema</button>
+      </form>
+    </div>
   );
-};
+}
 
 export default SubirPoema;

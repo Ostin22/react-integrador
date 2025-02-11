@@ -2,12 +2,21 @@
 
 /* Contenedor principal */
 .form-container {
-    display: grid;
-    place-items: center;
-    height: 100vh; /* Centrado vertical y horizontal */
-    background: url('https://www.bbva.com/wp-content/uploads/2019/06/A-0406-DiaMedioAmbiente-BBVA-1920x1180.jpg') no-repeat center center fixed; /* Imagen de fondo */
-    background-size: cover;
-    padding: 20px;
+  background-image: url('../assets/images/volcan4.jpeg'); /* Verifica que la ruta sea correcta */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh; /* Ocupará toda la pantalla */
+  width: 100vw; /* Ocupa todo el ancho del viewport */
+  min-height: 105vh; /* Ocupa al menos el alto del viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: absolute;  /* Fija el fondo respecto a la ventana */
+  top: 0;
+  left: 0;
   }
   
   /* Formulario */
