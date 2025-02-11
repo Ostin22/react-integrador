@@ -18,6 +18,6 @@ router.post("/agregardibujo", (req, res, next) => {
 
 // Ruta para obtener todos los dibujos
 router.get("/obtenerdibujos", dibujoController.obtenerTodosLosDibujos);
-
+//Limite por usuario
 module.exports = router;
 

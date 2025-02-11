@@ -38,25 +38,18 @@ const storage = multer.diskStorage({
   
 // Controlador para subir una nueva respuesta a un reto
 const subirRespuestaReto = async (req, res) => {
-  upload(req, res, async function(err) {
+  upload(req, res, async function (err) {
     if (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({ type: "error", message: err.message });
     }
-    console.log("req.body después de multer:", req.body); // Verifica si reto_id está presente
 
     try {
       const { reto_id, descripcion, usuario_id } = req.body;
-      //Prueba para que el usuario solo suba 1 respuesta
 
-      const respuestaExistente = await RetosRespuestas.findOne({
-        where: { reto_id, usuario_id }
-      });
-
+      const respuestaExistente = await RetosRespuestas.findOne({ where: { reto_id, usuario_id } });
       if (respuestaExistente) {
-        return res.status(400).json({ message: 'Ya has subido una respuesta para este reto.' });
+        return res.status(400).json({ type: "error", message: "Ya has subido una respuesta para este reto." });
       }
-
-
 
       const nuevaRespuesta = await RetosRespuestas.create({
         usuario_id,
@@ -64,16 +57,13 @@ const subirRespuestaReto = async (req, res) => {
         imagen_usuario: req.file.path,
         descripcion,
         fecha_subida: new Date(),
-        estado_id: ESTADO_PENDIENTE_ID
+        estado_id: ESTADO_PENDIENTE_ID,
       });
 
-      res.status(201).json({
-        message: "Respuesta al reto subida exitosamente",
-        data: nuevaRespuesta
-      });
+      res.status(201).json({ type: "success", message: "Respuesta al reto subida exitosamente", data: nuevaRespuesta });
     } catch (error) {
-      console.error('Error al subir respuesta:', error);
-      res.status(500).json({ message: "Error al procesar la respuesta al reto" });
+      console.error("Error al subir respuesta:", error);
+      res.status(500).json({ type: "error", message: "Error al procesar la respuesta al reto" });
     }
   });
 };
@@ -130,41 +120,30 @@ exports.obtenerRespuestasPendientes = async (req, res) => {
   
   // Procesar una respuesta (aprobar o rechazar)
   const procesarRespuesta = async (req, res) => {
-    const { id, accion } = req.body; // accion puede ser 'aprobar' o 'rechazar'
-    
+    const { id, accion } = req.body;
+  
     try {
       const respuesta = await RetosRespuestas.findByPk(id, {
-        include: [
-          { model: Reto },
-          { model: Usuario }
-        ]
+        include: [{ model: Reto }, { model: Usuario }],
       });
   
       if (!respuesta) {
-        return res.status(404).json({ message: "Respuesta no encontrada" });
+        return res.status(404).json({ type: "error", message: "Respuesta no encontrada" });
       }
   
-      if (accion === 'aprobar') {
-        // Actualizar puntos del usuario
-        await Usuario.increment(
-          { puntos: respuesta.Reto.puntos_retos },
-          { where: { id: respuesta.usuario_id } }
-        );
-        
-        // Actualizar estado de la respuesta
+      if (accion === "aprobar") {
+        await Usuario.increment({ puntos: respuesta.Reto.puntos_retos }, { where: { id: respuesta.usuario_id } });
         await respuesta.update({ estado_id: ESTADO_APROBADO_ID });
-        
-        res.json({ message: "Respuesta aprobada y puntos asignados" });
-      } else if (accion === 'rechazar') {
+        return res.json({ type: "success", message: "Respuesta aprobada y puntos asignados" });
+      } else if (accion === "rechazar") {
         await respuesta.update({ estado_id: ESTADO_RECHAZADO_ID });
-        // Aquí podrías implementar la lógica para eliminar la imagen si lo deseas
-        res.json({ message: "Respuesta rechazada" });
+        return res.json({ type: "success", message: "Respuesta rechazada" });
       } else {
-        res.status(400).json({ message: "Acción no válida" });
+        return res.status(400).json({ type: "error", message: "Acción no válida" });
       }
     } catch (error) {
-      console.error('Error al procesar respuesta:', error);
-      res.status(500).json({ message: "Error al procesar la respuesta" });
+      console.error("Error al procesar respuesta:", error);
+      res.status(500).json({ type: "error", message: "Error al procesar la respuesta" });
     }
   };
   

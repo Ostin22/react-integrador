@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import "./SubirImagen.css"; // Archivo de estilos
 
 const SubirImagen = () => {
   const [imagen, setImagen] = useState(null);
   const [titulo, setTitulo] = useState("");
   const [usuarioId, setUsuarioId] = useState(null);
+  const [mensaje, setMensaje] = useState({ type: "", text: "" });
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
-      console.log("Token:", localStorage.getItem("token"));
-
       if (!token) {
-        alert("Debes iniciar sesión para realizar esta acción");
+        setMensaje({ type: "error", text: "Debes iniciar sesión para realizar esta acción" });
         return;
       }
       try {
@@ -35,7 +35,7 @@ const SubirImagen = () => {
     e.preventDefault();
 
     if (!imagen || !titulo) {
-      alert("Por favor, completa todos los campos.");
+      setMensaje({ type: "error", text: "Por favor, completa todos los campos." });
       return;
     }
 
@@ -52,33 +52,34 @@ const SubirImagen = () => {
         },
       });
 
-      if (response.status >= 200 && response.status < 300) {
-        alert("Imagen subida correctamente!");
-        navigate('/apartado-artistico');
+      if (response.data.type === "success") {
+        setMensaje({ type: "success", text: response.data.message });
+        setTimeout(() => navigate("/apartado-artistico"), 2000);
       } else {
-        alert(`Error al subir la imagen: ${response.data.message || "Error desconocido"}`);
+        setMensaje({ type: "error", text: response.data.message });
       }
     } catch (error) {
       console.error("Error al subir la imagen:", error);
-      if (error.response) {
-        alert(`Error del servidor: ${error.response.data.message || error.response.data.error}`);
-      } else {
-        alert("Error de conexión.");
-      }
+      setMensaje({
+        type: "error",
+        text: error.response ? error.response.data.message || "Error del servidor" : "Error de conexión.",
+      });
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="imagen-form">
+      {mensaje.text && <div className={`mensaje ${mensaje.type}`}>{mensaje.text}</div>}
       <input
         type="text"
         placeholder="Título"
         value={titulo}
         onChange={(e) => setTitulo(e.target.value)}
         required
+        className="imagen-input"
       />
-      <input type="file" onChange={(e) => setImagen(e.target.files[0])} required />
-      <button type="submit">Subir Imagen</button>
+      <input type="file" onChange={(e) => setImagen(e.target.files[0])} required className="imagen-file" />
+      <button type="submit" className="imagen-button">Subir Imagen</button>
     </form>
   );
 };
