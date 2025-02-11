@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './AgregarReto.css';
 
 function AgregarReto() {
   const [nombre, setNombre] = useState('');
@@ -39,27 +40,31 @@ function AgregarReto() {
 
   return (
     <div id="container">
-      <h1 id="titulo">Agregar reto</h1>
-      <input
-        type="text"
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
-        placeholder="Nombre del reto"
-      />
-      <input
-        type="text"
-        value={descripcion}
-        onChange={(e) => setDescripcion(e.target.value)}
-        placeholder="Descripción del reto"
-      />
-      <input
-        type="text"
-        value={puntos_retos}
-        onChange={(e) => setPuntos(e.target.value)}
-        placeholder="Puntos del reto"
-      />
+      <h1 id="titulo">Agregar Reto</h1>
+      
+      <div id="formulario">
+        <input
+          type="text"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          placeholder="Nombre del reto"
+        />
+      
+        <input
+          type="text"
+          value={descripcion}
+          onChange={(e) => setDescripcion(e.target.value)}
+          placeholder="Descripción del reto"
+        />
+        <input
+          type="text"
+          value={puntos_retos}
+          onChange={(e) => setPuntos(e.target.value)}
+          placeholder="Puntos del reto"        
+        />
+      </div>  
       <button onClick={guardarDatos}>Guardar Reto</button>
-    </div>
+    </div> 
   );
 }
 
