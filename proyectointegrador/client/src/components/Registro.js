@@ -1,33 +1,34 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./AuthStyles.css"; 
+import "./AuthStyles.css";
 
 const Registro = () => {
-  const [nombre_usuario, setNombreUsuario] = useState("");
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [email, setEmail] = useState("");
-  const [contraseña, setContraseña] = useState("");
+  const [formData, setFormData] = useState({
+    nombre_usuario: "",
+    nombre: "",
+    apellido: "",
+    email: "",
+    contraseña: "",
+  });
+  const [mensaje, setMensaje] = useState({ type: "", text: "" });
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleRegistro = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4000/auth/agregarusuario", {
-        nombre_usuario,
-        nombre,
-        apellido,
-        email,
-        contraseña,
-      });
-      if (response.status === 201) {
-        alert("Registro exitoso. Por favor, inicia sesión.");
-        navigate("/login");
+      const response = await axios.post("http://localhost:4000/auth/agregarusuario", formData);
+      setMensaje({ type: response.data.type, text: response.data.message });
+
+      if (response.data.type === "success") {
+        setTimeout(() => navigate("/login"), 2000);
       }
     } catch (error) {
-      alert("Error en el registro");
-      console.error(error);
+      setMensaje({ type: "error", text: "Error en el registro" });
     }
   };
 
@@ -35,42 +36,19 @@ const Registro = () => {
     <div className="register-container">
       <div className="register-form">
         <h2>Registro</h2>
+        {mensaje.text && <div className={`mensaje ${mensaje.type}`}>{mensaje.text}</div>}
         <form onSubmit={handleRegistro}>
-        <input
-            type="text"
-            placeholder="Nombre de Usuario"
-            value={nombre_usuario}
-            onChange={(e) => setNombreUsuario(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Nombre"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Apellidos"
-            value={apellido}
-            onChange={(e) => setApellido(e.target.value)}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Correo"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={contraseña}
-            onChange={(e) => setContraseña(e.target.value)}
-            required
-          />
+          {["nombre_usuario", "nombre", "apellido", "email", "contraseña"].map((field) => (
+            <input
+              key={field}
+              type={field === "email" ? "email" : field === "contraseña" ? "password" : "text"}
+              name={field}
+              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+              value={formData[field]}
+              onChange={handleChange}
+              required
+            />
+          ))}
           <button type="submit">Registrarse</button>
         </form>
         <p>
