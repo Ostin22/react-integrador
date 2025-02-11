@@ -5,12 +5,20 @@ const sequelize = require("../models/config/database");
 const multer = require('multer');
 const path = require('path');
 const { QueryTypes } = require('sequelize');
+const fs = require("fs");
 
-const ESTADO_PENDIENTE_ID = 4; // Asumiendo que en catalogos el ID 1 es para "pendiente"
-const ESTADO_APROBADO_ID = 5;  // Asumiendo que en catalogos el ID 2 es para "aprobado"
+const uploadPath = path.join(__dirname, "../uploads/retos-respuestas");
+const ESTADO_PENDIENTE_ID = 4; /* Asume que en catalogos el ID 1 es para "pendiente" */
+const ESTADO_APROBADO_ID = 5;  /* Asume que en catalogos el ID 2 es para "aprobado" */
 const ESTADO_RECHAZADO_ID = 6;
 
-// Configuración de multer para subida de imágenes
+/* Verificar si la carpeta existe, si no, la crea*/
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath, { recursive: true });
+  console.log("Carpeta creada:", uploadPath);
+}
+
+/* Configuración de multer para subida de imágenes */
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'uploads/retos-respuestas/');
@@ -36,7 +44,7 @@ const storage = multer.diskStorage({
   
 
   
-// Controlador para subir una nueva respuesta a un reto
+/* Controlador para subir una nueva respuesta a un reto */
 const subirRespuestaReto = async (req, res) => {
   upload(req, res, async function (err) {
     if (err) {
@@ -118,7 +126,7 @@ exports.obtenerRespuestasPendientes = async (req, res) => {
     }
   };
   
-  // Procesar una respuesta (aprobar o rechazar)
+  /* Procesa la respuesta (aprobar o rechazar) */
   const procesarRespuesta = async (req, res) => {
     const { id, accion } = req.body;
   
