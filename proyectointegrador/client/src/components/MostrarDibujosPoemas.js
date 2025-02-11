@@ -54,7 +54,7 @@ const handleMostrarPoema = (poemaId) => {
 
   return (
       <div className="contenedor-principal">
-          <h2>Dibujos y Poemas Creados por los Usuarios</h2>
+          <h2 className= 'titulo-poema' >Dibujos y Poemas Creados por los Usuarios</h2>
           <h2 className='subtituloPoemasDibujos'>Poemas Ecologicos</h2>
           <div className="poemas-grid">
               {poemas.map((poema) => (

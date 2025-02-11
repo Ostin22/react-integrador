@@ -28,18 +28,18 @@ const VerPoema = () => {
     }
 
     return (
-        <div>
+        <div className="poema-container">
             {poema ? (
-                <div>
+                <div className="poema-content">
                     <h1>{poema.titulo_poema}</h1>
                     <p>{poema.rima}</p>
                     <p>Autor: {poema.Usuario?.nombre} {poema.Usuario?.apellido}</p>
                 </div>
             ) : (
-                <p>Cargando poema...</p>
+                <p className="cargando">Cargando poema...</p>
             )}
         </div>
     );
-};
+}    
 
 export default VerPoema;
