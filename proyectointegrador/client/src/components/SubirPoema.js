@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './SubirPoema.css'; // Archivo de estilos
+import './SubirPoema.css';
 
 const SubirPoema = () => {
   const [titulo_poema, setTitulo] = useState('');

@@ -7,15 +7,15 @@ const sequelize = require("../models/config/database");
 
 async function verificarLimite(usuario_id) {
   try {
-    // Contar la cantidad de dibujos y poemas del usuario
+    /* Cuenta la cantidad de poemas del usuario */
     const cantidadPoemas = await Poema.count({ where: { usuario_id } });
 
-    // Verificar si el usuario ha alcanzado el límite
+    /* Verifica si el usuario ha alcanzado el límite */
     if (cantidadPoemas >= 2) {
-      return true; // El usuario ha alcanzado el límite
+      return true; 
     }
 
-    return false; // El usuario no ha alcanzado el límite
+    return false; 
   } catch (error) {
     console.error("Error al verificar el límite:", error);
     throw error;

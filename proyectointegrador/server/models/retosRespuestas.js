@@ -55,7 +55,7 @@ const RetosRespuestas = sequelize.define("RetosRespuestas", {
     timestamps: false
 });
 
-// Establecer relaciones
+/* Establece relaciones con usuarios y retos */
 Usuario.hasMany(RetosRespuestas, { foreignKey: "usuario_id", onDelete: "CASCADE" });
 RetosRespuestas.belongsTo(Usuario, { foreignKey: "usuario_id" });
 

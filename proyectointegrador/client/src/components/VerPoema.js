@@ -11,7 +11,6 @@ const VerPoema = () => {
     useEffect(() => {
         const fetchPoema = async () => {
             try {
-                console.log(`Fetching poema with ID: ${poemaId}`);
                 const response = await axios.get(`http://localhost:4000/poemas/${poemaId}`);
                 console.log('Response:', response.data);
                 setPoema(response.data);

@@ -1,4 +1,3 @@
-// ProtectedAdminRoute.js
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";

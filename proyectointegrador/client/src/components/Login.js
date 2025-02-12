@@ -22,7 +22,7 @@ const Login = ({ setAuth }) => {
         setTimeout(() => navigate("/retos"), 2000);
       }
     } catch (error) {
-      setMensaje({ type: "error", text: "Error de Login" });
+      setMensaje({ type: "error", text: "Error de Login: Nombre de usuario o Contraseña Incorrecta" });
     }
   };
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./SubirImagen.css"; // Archivo de estilos
+import "./SubirImagen.css"; 
 
 const SubirImagen = () => {
   const [imagen, setImagen] = useState(null);

@@ -25,10 +25,15 @@ const Registro = () => {
       setMensaje({ type: response.data.type, text: response.data.message });
 
       if (response.data.type === "success") {
+        setMensaje({ type: "success", text: "Registro exitoso. Redirigiendo al login..." });
         setTimeout(() => navigate("/login"), 2000);
       }
     } catch (error) {
-      setMensaje({ type: "error", text: "Error en el registro" });
+      if (error.response && error.response.data.message === "Solo usuarios de la PUCE pueden registrarse") {
+        setMensaje({ type: "error", text: error.response.data.message });
+      } else {
+        setMensaje({ type: "error", text: "Error en el registro" });
+      }
     }
   };
 
