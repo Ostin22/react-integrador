@@ -33,4 +33,7 @@ router.get("/perfil", async (req, res) => {
     }
 });
 
+/*Ruta para mostrar los usuarios en el ranking*/
+router.get("/ranking", usuarioController.mostrarUsuariosRanking)
+
 module.exports = router;

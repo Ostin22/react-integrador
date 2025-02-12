@@ -2,9 +2,8 @@ const express = require("express");
 const router = express.Router();
 const upload = require("../models/config/multerconfig"); /*Importar la configuración de multer*/
 const dibujoController = require("../controllers/dibujoController");
-const multer = require("../models/config/multerconfig")
 
-// Ruta para subir un dibujo con imagen
+/* Ruta para subir la imagen del dibujo */
 router.post("/agregardibujo", (req, res, next) => {
     upload.single("imagen")(req, res, (err) => {
       if (err) {
@@ -16,7 +15,7 @@ router.post("/agregardibujo", (req, res, next) => {
     });
   }, dibujoController.agregarDibujo);
 
-// Ruta para obtener todos los dibujos
+/* Ruta para obtener todos los dibujos */
 router.get("/obtenerdibujos", dibujoController.obtenerTodosLosDibujos);
 
 module.exports = router;

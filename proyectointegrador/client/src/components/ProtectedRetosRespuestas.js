@@ -1,4 +1,3 @@
-// RetosRespuestas.js
 import React from 'react';
 import ProtectedAdminRoute from './ProtectedAdminRoute';
 

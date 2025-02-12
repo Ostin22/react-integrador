@@ -39,6 +39,11 @@ const Usuario = sequelize.define("Usuario", {
             model: "catalogos", 
             key: "id"
         }
+
+    },
+    puntos: {
+        type: DataTypes.INTEGER,
+        defaultValue:0
     }
 }, {
     tableName: "usuarios",

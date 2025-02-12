@@ -7,8 +7,8 @@
   
   .slider img {
     width: 100%;
-    height: 385px; /* Ajusta la altura según sea necesario */
-    object-fit: cover; /* Mantiene el contenido proporcionado */
+    height: 385px; 
+    object-fit: cover; 
   }
   
   /* Título y cuadrícula de retos */
@@ -50,8 +50,9 @@
   
   .reto-titulo {
     font-size: 1.5em;
-    color: #007bff;
+    color: #000000;
     margin-bottom: 10px;
+    font-family:  'Sans-serif';
   }
   
   .reto-descripcion {
@@ -71,7 +72,7 @@
     display: inline-block;
     text-decoration: none;
     color: #ffffff;
-    background-color: #007bff;
+    background-color: #560f80;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 1em;
@@ -79,6 +80,6 @@
   }
   
   .reto-enlace:hover {
-    background-color: #0056b3;
+    background-color: #44285c;
   }
   

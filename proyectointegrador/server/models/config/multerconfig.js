@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const uploadPath = path.join(__dirname, "../../public/imageuploadsdibujos");
 
-// Verificar si la carpeta existe, si no, crearla
+/* Verifica si la carpeta existe, si no, la crea */
 if (!fs.existsSync(uploadPath)) {
     fs.mkdirSync(uploadPath, { recursive: true });
     console.log("Carpeta creada:", uploadPath);
@@ -17,11 +17,11 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + path.extname(file.originalname);
-        cb(null, uniqueSuffix); // Genera un nombre único para cada imagen
+        cb(null, uniqueSuffix); /* Genera un nombre único para cada imagen*/
     }
 });
 
-// Filtro para aceptar solo imágenes
+/* Filtro para aceptar solo imágenes */
 const fileFilter = (req, file, cb) => {
     const allowedTypes = /jpeg|jpg|png|gif/;
     const extName = allowedTypes.test(path.extname(file.originalname).toLowerCase());
@@ -34,11 +34,11 @@ const fileFilter = (req, file, cb) => {
     }
 };
 
-// Límite de tamaño (5MB)
+/* Limita el tamaño de archivos (5MB) */
 const upload = multer({
     storage: storage,
     fileFilter: fileFilter,
-    limits: { fileSize: 5 * 1024 * 1024 } // 5MB
+    limits: { fileSize: 5 * 1024 * 1024 } /*calcula 5mb*/
 });
 
 module.exports = upload;

@@ -6,32 +6,23 @@ import "./AuthStyles.css";
 const Login = ({ setAuth }) => {
   const [nombre_usuario, setNombreUsuario] = useState("");
   const [contraseña, setContraseña] = useState("");
+  const [mensaje, setMensaje] = useState({ type: "", text: "" });
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
-    event.preventDefault();  
-
+    event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/auth/login', {
-        nombre_usuario,
-        contraseña
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const response = await axios.post("http://localhost:4000/auth/login", { nombre_usuario, contraseña });
 
-      if (response.status === 200) {
-        localStorage.setItem('token', response.data.token);
-        alert('Login exitoso!');
-        setAuth(true);  
-        navigate('/retos');  
-      } else {
-        alert('Error en el login: ' + response.data.message);
+      setMensaje({ type: response.data.type, text: response.data.message });
+
+      if (response.data.type === "success") {
+        localStorage.setItem("token", response.data.token);
+        setAuth(true);
+        setTimeout(() => navigate("/retos"), 2000);
       }
     } catch (error) {
-      console.error('Error de login:', error);
-      alert('Error al conectar al servidor');
+      setMensaje({ type: "error", text: "Error de Login: Nombre de usuario o Contraseña Incorrecta" });
     }
   };
 
@@ -39,6 +30,7 @@ const Login = ({ setAuth }) => {
     <div className="login-container">
       <div className="login-form">
         <h2>Login</h2>
+        {mensaje.text && <div className={`mensaje ${mensaje.type}`}>{mensaje.text}</div>}
         <form onSubmit={handleLogin}>
           <input
             type="text"

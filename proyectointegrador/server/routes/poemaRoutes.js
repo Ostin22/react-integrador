@@ -8,6 +8,5 @@ router.post('/agregarpoema', authMiddleware, poemaController.agregarPoema);
 /*ruta para obtener poemas*/
 router.get("/obtenerpoemas", poemaController.obtenerTodosLosPoemas);
 router.get("/:id", poemaController.obtenerPoemaPorId);
-
 module.exports = router;
 

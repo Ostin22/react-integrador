@@ -1,34 +1,37 @@
-.ranking-semanal {
-    background-image: url('../assets/images/paisaje1.jpg');/* Usa url() con la ruta correcta */
+
+
+
+.ranking-container {
+    background-image: url('../../public/static/volcan3.jpg');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 100vh; /* Para que el fondo cubra toda la pantalla */
+    height: 130vh;
+    width: 100vw; 
+    min-height: 50vw; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    position: absolute;  
+    top: 0;
+    left: 0;
+    
 }
 
-
-.ranking-container {
-    max-width: 42rem;
-    margin: 0 auto;
-    padding: 2rem; 
-}
 
 .ranking-title {
-    font-size: 4rem; 
+    font-size: 4rem;
     font-weight: bold;
-    color: #1b5e20;
+    color: #175732;
     margin-bottom: 1rem;
+    margin-top: 100px; 
 }
 
 .ranking-subtitle {
     font-size: 2rem; 
-    color: #2e7d32;
+    color: #175732;
     margin-bottom: 1.5rem; 
 }
 
@@ -40,12 +43,21 @@
 
 .ranking-card {
     background-color: rgb(208, 255, 202);
-    border-radius: 0.5rem;
-    padding: 2rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    animation: slideIn 0.3s ease-out;
-    transition: transform 0.2s ease;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0px auto;
+    border: 2px solid #52b788;
+    height: 150px;
+    width: 400px;
 }
+
 
 .ranking-card:hover {
     transform: translateX(10px);
@@ -74,15 +86,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-}
-
-.liga {
-    font-size: 1.125rem; 
-    background: linear-gradient(90deg, #4CAF50, #81C784);
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 500;
-    font-size: 1.5rem;
 }
 
 .points {

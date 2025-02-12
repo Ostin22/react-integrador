@@ -8,7 +8,7 @@ module.exports = function (req, res, next) {
 
   try {
     const decoded = jwt.verify(token.replace("Bearer ", ""), process.env.JWT_SECRET);
-    req.usuario = decoded; // Guardar el ID del usuario en req
+    req.usuario = decoded; /* Guarda el ID del usuario en req */
     next();
   } catch (error) {
     res.status(401).json({ message: "Token inválido" });

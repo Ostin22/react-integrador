@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate, useLocation, Link } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import RetosList from './components/RetosList';
@@ -7,16 +7,17 @@ import AgregarReto from './components/AgregarReto';
 import RankingSemanal from './components/RankingSemanal';
 import Login from './components/Login';
 import Registro from './components/Registro';
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import SubirImagen from './components/SubirImagen';
 import SubirPoema from './components/SubirPoema';
 import './App.css';
 import ApartadoArtistico from './components/ApartadoArtistico';
 import Perfil from "./components/Perfil";
-import ProtectedRetosRespuestas from './components/ProtectedRetosRespuestas';
 import AccesoDenegado from './components/ProtectedAdminRoute';
-
+import MostrarDibujosPoemas from './components/MostrarDibujosPoemas';
+import SubirRespuestaReto from './components/SubirRespuestaReto';
+import RetosRespuestas from './components/RetosRespuestas';
+import VerPoema from './components/VerPoema';
 
 function App() {
   const [auth, setAuth] = useState(!!localStorage.getItem("token"));
@@ -39,12 +40,16 @@ function App() {
           />
           <Route path="/registro" element={<Registro />} />
 
+
+          <Route path="/subir-respuesta/:retoId" element={<SubirRespuestaReto />} />
+
+
           {/* Rutas Protegidas */}
 
 
           {/* Ruta privada de administrador */}
 
-          <Route path="/retos-respuestas" element={<ProtectedRetosRespuestas />} />
+          <Route path="/retos-respuestas" element={<RetosRespuestas />} />
           <Route path="/acceso-denegado" element={<AccesoDenegado />} />
 
           <Route
@@ -74,7 +79,13 @@ function App() {
           {/* Ruta para subir poemas */}
           <Route path="/subir-poema" element={<SubirPoema />} />
 
-          {/* Ruta para futuros componentes (ejemplo: ranking semanal) */}
+          {/* Ruta para ver los dibujos y poemas */}
+          <Route path="/poemas-dibujos" element={<MostrarDibujosPoemas/>} />
+
+          {/* Ruta para ver los dibujos y poemas */}
+          <Route path="/ver-poema/:poemaId" element={<VerPoema/>} />
+
+          {/* Ruta para ranking semanal */}
           <Route path="/ranking-semanal" element={<RankingSemanal />} />
 
 
