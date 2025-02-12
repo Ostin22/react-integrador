@@ -1,6 +1,5 @@
-/* Estilos específicos para el Login */
 .login-container {
-  background-image: url('../assets/images/paisaje2.jpg'); /* Verifica que la ruta sea correcta */
+  background-image: url('../../public/static/paisaje2.jpg'); /* Verifica que la ruta sea correcta */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -89,7 +88,7 @@
   
   /* Estilos específicos para el Registro */
   .register-container {
-    background-image: url('../assets/images/paisaje2.jpg'); /* Verifica que la ruta sea correcta */
+    background-image: url('../../public/static/paisaje2.jpg'); /* Verifica que la ruta sea correcta */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

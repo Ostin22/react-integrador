@@ -1,6 +1,6 @@
 
 .container {
-  background-image: url('../assets/images/puñay2.png'); 
+  background-image: url('../../public/static/puñay2.png'); 
   background-size: 100% 100%;  /* Fuerza la imagen a ocupar el 100% del ancho y alto */
   background-repeat: no-repeat; 
   background-position: center;

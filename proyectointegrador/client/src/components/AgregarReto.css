@@ -2,7 +2,7 @@
 
 /* Contenedor principal */
 .form-container {
-  background-image: url('../assets/images/volcan4.jpeg'); /* Verifica que la ruta sea correcta */
+  background-image: url('../../public/static/volcan4.jpeg'); /* Verifica que la ruta sea correcta */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

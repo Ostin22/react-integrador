@@ -1,5 +1,5 @@
 .container-subir-imagen {
-  background-image: url('../assets/images/paisaje1.jpg'); 
+  background-image: url('../../public/static/paisaje1.jpg'); 
   background-size: 100% 100%;  /* Fuerza la imagen a ocupar el 100% del ancho y alto */
   background-repeat: no-repeat; 
   background-position: center;

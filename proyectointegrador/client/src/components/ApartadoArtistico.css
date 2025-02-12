@@ -13,7 +13,7 @@
 }
 
 .apartado-artistico {
-    background-image: url('../assets/images/paisaje1.jpg'); /* Verifica que la ruta sea correcta */
+    background-image: url('../../public/static/paisaje1.jpg'); /* Verifica que la ruta sea correcta */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
