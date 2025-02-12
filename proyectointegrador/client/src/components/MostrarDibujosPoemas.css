@@ -3,14 +3,13 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    height: 130vh; 
+    height: 300vh; 
     width: 100vw; 
     min-height: 50vw; 
     padding: 20px;
     position: absolute; 
     top: 0;
     left: 0;
-    
 }
 
 
