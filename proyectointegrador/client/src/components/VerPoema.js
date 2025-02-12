@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './VerPoema.css';
 
 const VerPoema = () => {
     const [poema, setPoema] = useState(null);
@@ -27,18 +28,18 @@ const VerPoema = () => {
     }
 
     return (
-        <div>
+        <div className="poema-container">
             {poema ? (
-                <div>
+                <div className="poema-content">
                     <h1>{poema.titulo_poema}</h1>
                     <p>{poema.rima}</p>
                     <p>Autor: {poema.Usuario?.nombre} {poema.Usuario?.apellido}</p>
                 </div>
             ) : (
-                <p>Cargando poema...</p>
+                <p className="cargando">Cargando poema...</p>
             )}
         </div>
     );
-};
+}    
 
 export default VerPoema;
