@@ -4,7 +4,7 @@ const sequelize = require("../models/config/database");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-// Registrar usuario
+/* Registrar usuario */
 exports.agregarUsuario = async (req, res) => {
   try {
     let { nombre_usuario, nombre, apellido, email, contraseña, permiso_id } = req.body;
@@ -13,7 +13,7 @@ exports.agregarUsuario = async (req, res) => {
       return res.status(400).json({ type: "error", message: "Todos los campos son obligatorios" });
     }
 
-    // Verificar que el correo tenga el dominio @puce.edu.ec
+    /* Verificar que el correo tenga el dominio @puce.edu.ec */
     const dominioValido = email.endsWith("@puce.edu.ec");
     if (!dominioValido) {
       return res.status(400).json({ type: "error", message: "Solo usuarios de la PUCE pueden registrarse" });
@@ -53,7 +53,7 @@ exports.agregarUsuario = async (req, res) => {
 
   
 
-// Login de usuario
+/* Login de usuario */
 exports.loginUsuario = async (req, res) => {
     const { nombre_usuario, contraseña } = req.body;
   

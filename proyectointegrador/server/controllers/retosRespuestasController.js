@@ -76,32 +76,6 @@ const subirRespuestaReto = async (req, res) => {
   });
 };
 
-exports.obtenerRespuestasPendientes = async (req, res) => {
-    try {
-      const estados = await obtenerEstadosIds();
-      
-      const respuestas = await RetosRespuestas.findAll({
-        where: { estado_id: estados['pendiente'] },
-        include: [
-          {
-            model: Usuario,
-            attributes: ['nombre_usuario', 'nombre', 'apellido']
-          },
-          {
-            model: Reto,
-            attributes: ['nombre', 'descripcion', 'puntos_retos']
-          }
-        ],
-        order: [['fecha_subida', 'DESC']]
-      });
-  
-      res.json(respuestas);
-    } catch (error) {
-      console.error('Error al obtener respuestas:', error);
-      res.status(500).json({ message: "Error al obtener las respuestas" });
-    }
-  };
-
   const obtenerRespuestasPendientes = async (req, res) => {
     try {
       const respuestas = await RetosRespuestas.findAll({

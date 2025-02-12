@@ -38,7 +38,7 @@ const Poema = sequelize.define("Poema", {
     timestamps: false
 });
 
-/*Establecer relación con Usuario (Un usuario puede tener varios poemas)*/
+/*Establecer relación con Usuario*/
 Usuario.hasMany(Poema, { foreignKey: "usuario_id", onDelete: "CASCADE" });
 Poema.belongsTo(Usuario, { foreignKey: "usuario_id" });
 

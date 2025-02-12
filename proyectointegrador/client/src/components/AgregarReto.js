@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./AgregarReto.css"; // Archivo de estilos
+import "./AgregarReto.css";
 
 function AgregarReto() {
   const [nombre, setNombre] = useState("");
