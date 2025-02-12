@@ -1,17 +1,17 @@
 .poema-container{
-    background-image: url('../assets/images/paisaje1.jpg'); /* Verifica que la ruta sea correcta */
+    background-image: url('../../public/static/paisaje1.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    height: 130vh; /* Ocupará toda la pantalla */
-    width: 100vw; /* Ocupa todo el ancho del viewport */
-    min-height: 50vw; /* Ocupa al menos el alto del viewport */
+    height: 130vh; 
+    width: 100vw; 
+    min-height: 50vw; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    position: absolute;  /* Fija el fondo respecto a la ventana */
+    position: absolute; 
     top: 0;
     left: 0;
     
@@ -19,18 +19,18 @@
 
 .poema-container {
     display: flex;
-    justify-content: center;  /* Centra horizontalmente */
-    align-items: center;  /* Centra verticalmente */
-    height: 100vh;  /* Ocupa toda la pantalla */
-    text-align: center;  /* Alinea el texto al centro */
+    justify-content: center;  
+    align-items: center;  
+    height: 100vh;  
+    text-align: center;  
 }
 
 .poema-content {
-    background: rgba(255, 255, 255, 0.8); /* Fondo sutil para destacar */
+    background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 600px; /* Controla el ancho del poema */
+    max-width: 600px; 
 }
 
 .cargando {

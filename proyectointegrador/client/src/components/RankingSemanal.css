@@ -2,19 +2,19 @@
 
 
 .ranking-container {
-    background-image: url('../../public/static/volcan3.jpg'); /* Verifica que la ruta sea correcta */
+    background-image: url('../../public/static/volcan3.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    height: 130vh; /* Ocupará toda la pantalla */
-    width: 100vw; /* Ocupa todo el ancho del viewport */
-    min-height: 50vw; /* Ocupa al menos el alto del viewport */
+    height: 130vh;
+    width: 100vw; 
+    min-height: 50vw; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    position: absolute;  /* Fija el fondo respecto a la ventana */
+    position: absolute;  
     top: 0;
     left: 0;
     
@@ -25,8 +25,8 @@
     font-size: 4rem;
     font-weight: bold;
     color: #175732;
-    margin-bottom: 1rem; /* Reducir margen inferior */
-    margin-top: 100px; /* Elevarlo hacia arriba */
+    margin-bottom: 1rem;
+    margin-top: 100px; 
 }
 
 .ranking-subtitle {

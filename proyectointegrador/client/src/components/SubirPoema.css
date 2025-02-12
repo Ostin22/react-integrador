@@ -1,6 +1,6 @@
 .container-subir-poema {
   background-image: url('../../public/static/paisaje1.jpg'); 
-  background-size: 100% 100%;  /* Fuerza la imagen a ocupar el 100% del ancho y alto */
+  background-size: 100% 100%;  
   background-repeat: no-repeat; 
   background-position: center;
   

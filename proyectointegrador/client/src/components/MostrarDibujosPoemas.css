@@ -1,18 +1,18 @@
 
 .contenedor-principal{
-    background-image: url('../../public/static/paisaje1.jpg'); /* Verifica que la ruta sea correcta */
+    background-image: url('../../public/static/paisaje1.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    height: 130vh; /* Ocupará toda la pantalla */
-    width: 100vw; /* Ocupa todo el ancho del viewport */
-    min-height: 50vw; /* Ocupa al menos el alto del viewport */
+    height: 130vh; 
+    width: 100vw; 
+    min-height: 50vw; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    position: absolute;  /* Fija el fondo respecto a la ventana */
+    position: absolute; 
     top: 0;
     left: 0;
     
@@ -21,17 +21,16 @@
 .titulo-poema{
     font-size: 3rem;
     font-weight: bold;
-    color: #175732;
-    margin-bottom: -15rem; /* Reducir margen inferior */
-    margin-top: 100px; /* Elevarlo hacia arriba */
+    color: #ffffff;
+    margin-top: 50px; 
 
     
 }
 .subtituloPoemasDibujos {
     text-align: center;
-    padding-top: 50px;
-    color: #0c6e3d;
-    margin-inline : 200px; 
+    padding-top: 25px;
+    color: #033949;
+    margin-inline : 100px; 
 }
 
 .poemas-grid {
@@ -46,7 +45,7 @@
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    margin-top: 200px;
+    margin-top: 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     padding: 20px;
     text-align: center;

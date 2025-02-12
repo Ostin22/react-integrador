@@ -1,20 +1,18 @@
-/* AgregarReto.css */
 
-/* Contenedor principal */
 .form-container {
-  background-image: url('../../public/static/volcan4.jpeg'); /* Verifica que la ruta sea correcta */
+  background-image: url('../../public/static/volcan4.jpeg'); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  height: 100vh; /* Ocupará toda la pantalla */
-  width: 100vw; /* Ocupa todo el ancho del viewport */
-  min-height: 105vh; /* Ocupa al menos el alto del viewport */
+  height: 100vh;
+  width: 100vw;
+  min-height: 105vh; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  position: absolute;  /* Fija el fondo respecto a la ventana */
+  position: absolute;  
   top: 0;
   left: 0;
   }
@@ -45,7 +43,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    width: 100%; /* Asegura que los inputs ocupen todo el ancho */
+    width: 100%; 
   }
   
   /* Estilo para el botón */
@@ -58,7 +56,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s ease;
-    width: 100%; /* Hace que el botón ocupe todo el ancho */
+    width: 100%; 
   }
   
   /* Efecto hover en el botón */
