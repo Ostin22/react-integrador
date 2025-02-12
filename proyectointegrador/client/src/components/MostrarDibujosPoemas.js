@@ -45,7 +45,7 @@ const MostrarDibujosPoemas = () => {
 const handleMostrarPoema = (poemaId) => {
     const token = localStorage.getItem('token');
     if (!token) {
-      alert('Debes iniciar sesión para subir una respuesta');
+      alert('Debes iniciar sesiÃ³n para subir una respuesta');
       navigate('/login');
       return;
     }
@@ -54,7 +54,7 @@ const handleMostrarPoema = (poemaId) => {
 
   return (
       <div className="contenedor-principal">
-          <h1 className= 'titulo-poema' >Dibujos y Poemas Creados por los Usuarios</h1>
+          <h2>Dibujos y Poemas Creados por los Usuarios</h2>
           <h2 className='subtituloPoemasDibujos'>Poemas Ecologicos</h2>
           <div className="poemas-grid">
               {poemas.map((poema) => (
