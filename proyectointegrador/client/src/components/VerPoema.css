@@ -1,0 +1,95 @@
+.mostrar-dibujos-poemas-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+  }
+  
+  .titulo-principal {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    margin-bottom: 20px;
+  }
+  
+  .subtitulo {
+    font-size: 2rem;
+    color: #333;
+    margin-top: 40px;
+    border-bottom: 3px solid #4CAF50;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  
+  .grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-titulo {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .card-autor, .card-fecha {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 5px;
+  }
+  
+  .boton-visualizacion {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .boton-visualizacion:hover {
+    background: #388E3C;
+  }
+  
+  .imagen-container {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .dibujo-imagen {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-info {
+    text-align: left;
+  }
+  
+  .placeholder {
+    background-color: #ddd;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555;
+    font-size: 1.2rem;
+  }
+  
